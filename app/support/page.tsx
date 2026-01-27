@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 // ========================================
 // 設定値（変更が必要な場合はここを編集）
@@ -46,6 +47,8 @@ const TRANSLATIONS: Record<Language, {
   responseTimeText: string;
   supportedLanguages: string;
   supportedLanguagesText: string;
+  privacyPolicy: string;
+  privacyPolicyText: string;
 }> = {
   ja: {
     support: "サポート",
@@ -60,6 +63,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "お問い合わせへの返信は通常48時間以内を目安としております。お時間をいただく場合がございますが、ご了承ください。",
     supportedLanguages: "対応言語",
     supportedLanguagesText: "日本語・英語・フランス語・ドイツ語・韓国語・中国語でのお問い合わせに対応しております。",
+    privacyPolicy: "プライバシーポリシー",
+    privacyPolicyText: "個人情報の取り扱いについてはこちらをご確認ください。",
   },
   en: {
     support: "Support",
@@ -74,6 +79,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "We aim to respond to inquiries usually within 48 hours. Thank you for your patience.",
     supportedLanguages: "Supported Languages",
     supportedLanguagesText: "We accept inquiries in Japanese, English, French, German, Korean, and Chinese.",
+    privacyPolicy: "Privacy Policy",
+    privacyPolicyText: "Please check here for our privacy policy.",
   },
   fr: {
     support: "Assistance",
@@ -88,6 +95,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "Nous nous efforçons de répondre aux demandes généralement dans les 48 heures. Merci de votre patience.",
     supportedLanguages: "Langues prises en charge",
     supportedLanguagesText: "Nous acceptons les demandes en japonais, anglais, français, allemand, coréen et chinois.",
+    privacyPolicy: "Politique de confidentialité",
+    privacyPolicyText: "Veuillez consulter notre politique de confidentialité ici.",
   },
   de: {
     support: "Support",
@@ -102,6 +111,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "Wir bemühen uns, Anfragen in der Regel innerhalb von 48 Stunden zu beantworten. Vielen Dank für Ihre Geduld.",
     supportedLanguages: "Unterstützte Sprachen",
     supportedLanguagesText: "Wir nehmen Anfragen auf Japanisch, Englisch, Französisch, Deutsch, Koreanisch und Chinesisch entgegen.",
+    privacyPolicy: "Datenschutzrichtlinie",
+    privacyPolicyText: "Bitte lesen Sie unsere Datenschutzrichtlinie hier.",
   },
   ko: {
     support: "지원",
@@ -116,6 +127,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "문의에 대한 답변은 보통 48시간 이내에 드리고 있습니다. 양해 부탁드립니다.",
     supportedLanguages: "지원 언어",
     supportedLanguagesText: "일본어, 영어, 프랑스어, 독일어, 한국어, 중국어로 문의하실 수 있습니다.",
+    privacyPolicy: "개인정보 처리방침",
+    privacyPolicyText: "개인정보 처리방침은 여기에서 확인하세요.",
   },
   zh: {
     support: "支持",
@@ -130,6 +143,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "我们通常会在48小时内回复您的咨询。感谢您的耐心等待。",
     supportedLanguages: "支持的语言",
     supportedLanguagesText: "我们接受日语、英语、法语、德语、韩语和中文的咨询。",
+    privacyPolicy: "隐私政策",
+    privacyPolicyText: "请在此查看我们的隐私政策。",
   },
 };
 
@@ -368,9 +383,47 @@ export default function SupportPage() {
             </Section>
 
             {/* 対応言語 */}
-            <Section className="mb-0">
+            <Section>
               <SectionTitle>{t.supportedLanguages}</SectionTitle>
               <p className="text-gray-700 leading-relaxed">{t.supportedLanguagesText}</p>
+            </Section>
+
+            {/* プライバシーポリシー */}
+            <Section className="mb-0">
+              <SectionTitle>{t.privacyPolicy}</SectionTitle>
+              <p className="text-gray-700 mb-4">{t.privacyPolicyText}</p>
+              <Link
+                href="/support/privacy"
+                className="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+                {t.privacyPolicy}
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
             </Section>
           </>
         )}
