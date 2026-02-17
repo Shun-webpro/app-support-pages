@@ -662,7 +662,7 @@ export default function PrivacyPolicyPage() {
         {/* サポートページへ戻る */}
         <div className="text-center mb-8">
           <Link
-            href="/support"
+            href="/support/todoo"
             className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
           >
             <svg
