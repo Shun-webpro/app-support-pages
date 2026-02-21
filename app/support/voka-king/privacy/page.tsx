@@ -8,14 +8,15 @@ import appIcon from "@/app/images/voka_king.png";
 // 設定値
 // ========================================
 const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
-const LAST_UPDATED = "2026년 2월 17일 / February 17, 2026";
+const LAST_UPDATED = "2026年2月17日 / 2026년 2월 17일 / February 17, 2026";
 
 // ========================================
 // 言語定義
 // ========================================
-type Language = "ko" | "en";
+type Language = "ja" | "ko" | "en";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
   { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "en", label: "English", flag: "🇺🇸🇬🇧🇦🇺" },
 ];
@@ -144,6 +145,228 @@ const TRANSLATIONS: Record<Language, {
     };
   };
 }> = {
+  ja: {
+    title: "プライバシーポリシー",
+    lastUpdated: "最終更新",
+    sections: {
+      scope: {
+        title: "2. 適用範囲",
+        content: "本プライバシーポリシーは、本アプリの利用に伴い収集・送信・保存・利用される情報の取り扱いに適用されます。",
+        note: "本アプリからリンクされる外部サイトや外部サービスの取り扱いについては、当該事業者のポリシーが適用されます。",
+      },
+      appInfo: {
+        title: "3. 本アプリの基本情報",
+        items: [
+          { label: "アプリ名", value: "VOKA KING" },
+          { label: "Bundle ID", value: "com.vokaking.learn (iOS/Android共通)" },
+          { label: "バージョン", value: "1.0.0" },
+          { label: "対応プラットフォーム", value: "iOS / Android" },
+          { label: "アプリの種別", value: "英語語彙学習アプリ（オフラインファースト）" },
+        ],
+      },
+      dataCollection: {
+        title: "4. 取得する情報（収集有無・範囲）",
+        description: "本アプリは、ユーザーのメールアドレスやアカウント情報等の個人情報を原則として収集しません。収集・送信される可能性のある情報は以下のとおりです。",
+        notCollected: {
+          title: "4.1 収集しない情報（アプリで収集しない）",
+          description: "本アプリは以下の情報をアプリで収集・保存しません。",
+          items: [
+            "メールアドレス（認証機能なし）",
+            "ユーザー名（アカウント機能なし）",
+            "プロフィール情報",
+            "位置情報（位置情報APIの使用なし）",
+            "広告識別子（IDFA / Google Advertising ID：広告SDK未導入のため使用なし）",
+            "Cookie（アプリ内のCookie使用なし）",
+            "分析用の行動追跡データ（Firebase / Google Analytics等未導入）",
+          ],
+        },
+        minimalCollection: {
+          title: "4.2 最小限に収集する情報（端末内判定）",
+          description: "OS種別（iOS/Android）の判定のみ実施",
+          note: "※ 機種名・端末固有IDなどの識別情報は収集しません。",
+        },
+        indirectTransmission: {
+          title: "4.3 間接的に送信される可能性のある情報（通信に伴うもの）",
+          description: "本アプリが外部APIに通信する際、通信の性質上、以下が外部サービスに送信される可能性があります。",
+          items: [
+            "IPアドレス（例：WorldTimeAPI、Google Translate TTSへのリクエスト時に暗黙的に送信される可能性があります）",
+          ],
+        },
+      },
+      localStorage: {
+        title: "5. 端末内に保存されるデータ（ローカル保存）",
+        description: "本アプリはオフラインファーストであり、学習関連データの大半をユーザー端末内（SQLite等）のみに保存し、当社のサーバーへは送信・保存しません（クラウド同期なし）。",
+        data: {
+          title: "5.1 ローカルに保存される主なデータ",
+          items: [
+            "単語チェック状態・復習フラグ",
+            "クイズ回答履歴（スコア、正誤、日付）",
+            "バッジ進捗（ステージ0〜4、取得日・期限）",
+            "ユーザー作成単語帳（単語・意味・類義語・反意語・メモ）",
+            "アプリ設定（音声の性別・地域、効果音ON/OFF、リマインダー設定など）",
+            "サブスクリプション状態キャッシュ（後述）",
+          ],
+        },
+        protection: {
+          title: "5.2 保存場所および保護",
+          content: "これらのデータはOSのアプリサンドボックス内に保存され、OSのアクセス制御によって保護されます。",
+        },
+      },
+      purpose: {
+        title: "6. 情報の利用目的",
+        description: "本アプリが取り扱う情報（主に端末内データおよび通信に伴う情報）の利用目的は以下のとおりです。",
+        items: [
+          "サービス提供・機能実現（学習機能、クイズ機能、音声読み上げ等）",
+          "学習データの保存（端末内SQLiteへ保存。クラウド同期なし）",
+          "不正利用防止（WorldTimeAPI等を利用した時刻同期による日次クイズ回数制限の実施）",
+          "通知の送信（ローカル通知のみ：例 9:00 / 19:00 復習リマインダー）",
+          "決済処理・サブスクリプション状態の確認（RevenueCatを通じてApple/Googleの決済状態を管理）",
+        ],
+        notes: [
+          "※ アカウント管理：アカウント機能がないため実施しません。",
+          "※ サービス改善・分析：分析SDK未導入のため、ユーザー行動を分析目的で追跡しません。",
+          "※ 広告配信：広告SDK未導入のため実施しません。",
+        ],
+      },
+      thirdParty: {
+        title: "7. 第三者提供・外部送信（外部サービスの利用）",
+        description: "本アプリは以下の外部サービスを利用する場合があります。利用に伴い、必要最小限の情報が各サービスに送信される場合があります。",
+        providers: {
+          title: "7.1 提供先・提供情報・目的",
+          items: [
+            {
+              name: "RevenueCat",
+              data: "購入情報、サブスクリプション状態、（RevenueCat/OSが使用する）デバイス識別子等",
+              purpose: "サブスクリプション管理・決済処理補助、購入状態の検証",
+            },
+            {
+              name: "Apple / Google（App Store / Google Play）",
+              data: "決済情報（プラットフォーム経由）",
+              purpose: "アプリ内課金処理、サブスクリプション管理",
+              notes: ["※ 当社はクレジットカード番号等の決済情報を保有しません。"],
+            },
+            {
+              name: "Google Translate TTS（API）",
+              data: "韓国語テキスト文字列",
+              purpose: "音声合成（発音生成）",
+              notes: [
+                "※ 本機能は外部サービスへの送信を伴うため、オフライン環境では使用できない場合があります。",
+                "※（参考）「非公式API」としての利用形態が含まれる場合、提供者の利用規約・仕様変更等により動作や提供範囲が変更される場合があります。",
+              ],
+            },
+            {
+              name: "WorldTimeAPI",
+              data: "通信に伴うIPアドレス等（暗黙的）",
+              purpose: "時刻同期（日次クイズ回数制限等の不正防止）",
+            },
+          ],
+        },
+        legal: {
+          title: "7.2 法令に基づく提供",
+          content: "法令に基づく開示義務が生じた場合、または裁判所・行政機関等からの適法な要請を受けた場合、必要な範囲で情報を開示することがあります。",
+        },
+      },
+      sdks: {
+        title: "8. 利用している主なSDK・ライブラリ",
+        description: "本アプリでは以下のSDK/ライブラリを利用しています（用途は下記のとおりです）。",
+        items: [
+          "expo-notifications: ローカル通知（復習リマインダー）",
+          "expo-speech: テキスト読み上げ（英語）",
+          "expo-audio: 効果音・音声再生",
+          "expo-sqlite: ローカルデータベース",
+          "expo-file-system: TTS音声キャッシュ、データエクスポート",
+          "expo-sharing: データエクスポート共有",
+          "expo-print: PDF生成",
+          "expo-store-review: App Storeレビュー促進",
+          "@react-native-community/netinfo: ネットワーク状態検知",
+          "Google Translate TTS API: 韓国語音声合成",
+          "WorldTimeAPI: サーバー時刻同期",
+          "RevenueCat (react-native-purchases v9.7.5): サブスクリプション管理",
+        ],
+        note: "※ Firebase / Google Analytics / AdMob / Stripeは導入していません。",
+      },
+      advertising: {
+        title: "9. 広告・追跡（Cookie/広告ID等）",
+        description: "本アプリは広告SDKを導入しておらず、以下を使用しません。",
+        items: [
+          "Cookie：使用なし",
+          "IDFA：使用なし",
+          "Google Advertising ID（AAID）：使用なし",
+          "追跡型広告：なし",
+        ],
+        note: "（参考）ITSAppUsesNonExemptEncryption: false",
+      },
+      retention: {
+        title: "10. データの保存期間・削除",
+        period: {
+          title: "10.1 保存期間",
+          description: "端末内データは原則としてユーザーの端末に保存され、以下の保存期間で管理されます。",
+          items: [
+            { name: "学習進捗・バッジ", detail: "アプリ削除時まで（端末ローカル）" },
+            { name: "クイズ履歴（日別）", detail: "7日間（quiz_attempts_dailyテーブルで自動整理）" },
+            { name: "クイズ詳細履歴", detail: "アプリ削除時まで" },
+            { name: "カスタム単語帳", detail: "アプリ削除時まで" },
+            { name: "TTS音声キャッシュ", detail: "端末のキャッシュ領域に保存（OSが管理）" },
+            { name: "サブスクリプション状態キャッシュ", detail: "アプリ削除時まで（オフライン猶予：24時間）" },
+            { name: "アプリ設定", detail: "アプリ削除時まで" },
+          ],
+        },
+        accountDeletion: {
+          title: "10.2 アカウント削除",
+          content: "本アプリにはアカウント機能がないため、アカウント削除の手続きはありません。アプリをアンインストールすることで端末内データが削除されます（OS仕様に依存）。",
+        },
+        resetFunction: {
+          title: "10.3 アプリ内リセット機能",
+          content: "本アプリには設定画面から「学習データの初期化」を行う機能があります。これによりクイズ履歴・単語状態・バッジ等を初期化できます。",
+        },
+      },
+      userRights: {
+        title: "11. ユーザーの権利（開示・訂正・削除等）",
+        description: "本アプリは主に端末内にデータを保存するため、ユーザーはアプリ内機能を通じて自身のデータを管理できます。",
+        items: [
+          { name: "データの開示", detail: "エクスポート機能でWord / PDF / JSON形式で出力可能" },
+          { name: "訂正", detail: "ユーザーがアプリ内で直接編集可能" },
+          { name: "削除", detail: "設定 > 学習データの初期化、またはアプリ削除にて対応" },
+          { name: "利用停止", detail: "アプリのアンインストールにて対応" },
+          { name: "同意の撤回（通知許可）", detail: "OS設定から変更・取り消し可能" },
+          { name: "同意の撤回（サブスクリプション）", detail: "Apple / Google管理画面から解約可能" },
+        ],
+      },
+      notifications: {
+        title: "12. 通知（ローカル通知）",
+        content: "本アプリは復習リマインダー等の目的でローカル通知を利用します（例：9:00/19:00）。",
+        note: "通知の受信はユーザーの許可に基づき、許可の変更はOS設定から行えます。",
+      },
+      security: {
+        title: "13. セキュリティ",
+        description: "本アプリは情報の漏洩・滅失・毀損等を防止するため、合理的な安全管理措置を講じます。",
+        items: [
+          "外部API通信はHTTPS（SSL/TLS）を使用",
+          "端末内データはOSのアプリサンドボックスで保護",
+          "データの暗号化はOSレベルのファイル暗号化等の仕組みに依存",
+          "決済・サブスクリプション管理はRevenueCatおよびApple/Googleの仕組みに依存",
+        ],
+      },
+      minors: {
+        title: "14. 未成年者の利用",
+        content: "本アプリは年齢確認機能を実装していません。13歳未満の利用可否や保護者同意の取り扱いは、今後の提供形態・各ストアの設定（コンテンツレーティング等）によって変更される場合があります。\n本アプリは個人情報をほぼ収集しませんが、未成年者の利用が想定される場合は保護者の方が本ポリシーをご確認の上ご利用ください。",
+        note: "（参考）子ども向けアプリとして提供する場合、COPPA等の法令・各ストアポリシーへの対応が必要になる場合があります。",
+      },
+      crossBorder: {
+        title: "15. 国外移転（越境移転）",
+        content: "外部サービス（RevenueCat、Apple/Google、WorldTimeAPI、Google Translate TTS等）が国外のサーバーで情報を処理する場合、ユーザーの情報が国外で取り扱われる場合があります。詳細は各サービス提供者のプライバシーポリシーをご確認ください。",
+      },
+      changes: {
+        title: "16. プライバシーポリシーの変更",
+        content: "本ポリシーの内容は、法令やサービス内容の変更等に応じて改定されることがあります。改定後の内容は本アプリ内またはウェブ上の掲載箇所でお知らせするとともに、改定日を明記します。重要な変更がある場合は、可能な範囲でアプリ内表示やストアのアップデート情報等でお知らせします。",
+        publishLocation: "掲載場所（予定）：本ページ",
+      },
+      contact: {
+        title: "お問い合わせ",
+        content: "本プライバシーポリシーに関するご質問やご意見がございましたら、以下の連絡先までお問い合わせください。",
+      },
+    },
+  },
   ko: {
     title: "개인정보 처리방침",
     lastUpdated: "최종 업데이트",
@@ -801,7 +1024,7 @@ function StoreButtons() {
 // メインページ
 // ========================================
 export default function VokaKingPrivacyPolicyPage() {
-  const [lang, setLang] = useState<Language>("ko");
+  const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
   const s = t.sections;
   const currentYear = new Date().getFullYear();

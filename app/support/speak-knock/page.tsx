@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import appIcon from "@/app/images/speak_knock.png";
 
 // ========================================
 // 設定値
@@ -11,10 +13,11 @@ const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
 // ========================================
 // 言語定義
 // ========================================
-type Language = "ja" | "en";
+type Language = "ja" | "ko" | "en";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "en", label: "English", flag: "🇺🇸" },
 ];
 
@@ -40,23 +43,39 @@ const TRANSLATIONS: Record<Language, {
   ja: {
     support: "サポート",
     aboutSupport: "サポートについて",
-    aboutSupportText: "カン単をご利用いただきありがとうございます。ご不明な点やお困りのことがございましたら、以下のよくある質問をご確認いただくか、お問い合わせください。",
+    aboutSupportText: "SpeakKnockをご利用いただきありがとうございます。ご質問や問題がございましたら、下記のFAQをご確認いただくか、お問い合わせください。",
     faq: "よくある質問",
     contactUs: "お問い合わせ",
-    contactText: "上記で解決しない場合は、メールにてお問い合わせください。",
-    contactButton: "メールで問い合わせる",
-    responseTime: "返信について",
-    responseTimeText: "お問い合わせへの返信は通常48時間以内を目安としております。お時間をいただく場合がございますが、ご了承ください。",
+    contactText: "上記で解決策が見つからない場合は、メールにてお問い合わせください。",
+    contactButton: "メールでお問い合わせ",
+    responseTime: "返信目安",
+    responseTimeText: "お問い合わせへの返答は通常48時間以内を目安にしております。ご了承ください。",
     supportedLanguages: "対応言語",
-    supportedLanguagesText: "日本語・英語でのお問い合わせに対応しております。",
+    supportedLanguagesText: "日本語・英語でお問い合わせいただけます。",
     privacyPolicy: "プライバシーポリシー",
-    privacyPolicyText: "個人情報の取り扱いについてはこちらをご確認ください。",
+    privacyPolicyText: "プライバシーポリシーはこちらでご確認いただけます。",
     backToHub: "アプリ一覧に戻る",
+  },
+  ko: {
+    support: "지원",
+    aboutSupport: "지원 안내",
+    aboutSupportText: "SpeakKnock를 이용해 주셔서 감사합니다. 질문이나 문제가 있으시면 아래 FAQ를 확인하시거나 문의해 주세요.",
+    faq: "자주 묻는 질문",
+    contactUs: "문의하기",
+    contactText: "위에서 해결책을 찾지 못하셨다면 이메일로 문의해 주세요.",
+    contactButton: "이메일로 문의",
+    responseTime: "응답 시간",
+    responseTimeText: "문의에 대한 답변은 보통 48시간 이내에 드리고 있습니다. 양해 부탁드립니다.",
+    supportedLanguages: "지원 언어",
+    supportedLanguagesText: "일본어・한국어・영어로 문의하실 수 있습니다.",
+    privacyPolicy: "개인정보 처리방침",
+    privacyPolicyText: "개인정보 처리방침은 여기에서 확인하세요.",
+    backToHub: "앱 목록으로 돌아가기",
   },
   en: {
     support: "Support",
     aboutSupport: "About Support",
-    aboutSupportText: "Thank you for using Kantan. If you have any questions or issues, please check the FAQ below or contact us.",
+    aboutSupportText: "Thank you for using SpeakKnock. If you have any questions or issues, please check the FAQ below or contact us.",
     faq: "FAQ",
     contactUs: "Contact Us",
     contactText: "If you cannot find a solution above, please contact us by email.",
@@ -64,7 +83,7 @@ const TRANSLATIONS: Record<Language, {
     responseTime: "Response Time",
     responseTimeText: "We aim to respond to inquiries usually within 48 hours. Thank you for your patience.",
     supportedLanguages: "Supported Languages",
-    supportedLanguagesText: "We accept inquiries in Japanese and English.",
+    supportedLanguagesText: "We accept inquiries in Japanese, Korean, and English.",
     privacyPolicy: "Privacy Policy",
     privacyPolicyText: "Please check here for our privacy policy.",
     backToHub: "Back to App List",
@@ -80,52 +99,74 @@ const FAQ_DATA: {
 }[] = [
   {
     question: {
-      ja: "データは他のデバイスと同期されますか？",
-      en: "Is my data synced across devices?",
+      ja: "Free・Standard・Pro・Premiumプランの違いは何ですか？",
+      ko: "Free・Standard・Pro・Premium 플랜의 차이점은 무엇인가요？",
+      en: "What is the difference between Free, Standard, Pro, and Premium plans?",
     },
     answer: {
-      ja: "現在、データはお使いのデバイス内にのみ保存されます。将来的にクラウド同期機能の追加を検討しています。",
-      en: "Currently, your data is stored only on your device. We are considering adding cloud sync in the future.",
+      ja: "Freeプランは基本的なスピーキング練習が可能です。Standardプランでは音声の文字起こし（Whisper API）が追加されます。ProプランはAI採点（GPT-4o-mini）も含まれます。Premiumプランではさらに発音評価（Azure Cognitive Services）が利用できます。",
+      ko: "Free 플랜은 기본적인 스피킹 연습이 가능합니다. Standard 플랜은 음성 텍스트 변환（Whisper API）이 추가됩니다. Pro 플랜은 AI 채점（GPT-4o-mini）도 포함됩니다. Premium 플랜은 추가로 발음 평가（Azure Cognitive Services）를 이용할 수 있습니다.",
+      en: "The Free plan offers basic speaking practice. The Standard plan adds voice transcription (Whisper API). The Pro plan also includes AI scoring (GPT-4o-mini). The Premium plan additionally provides pronunciation assessment (Azure Cognitive Services).",
     },
   },
   {
     question: {
-      ja: "通知が届きません",
-      en: "I'm not receiving notifications",
+      ja: "録音した音声はどこかに保存されますか？",
+      ko: "녹음한 음성은 어딘가에 저장되나요？",
+      en: "Is my recorded audio stored anywhere?",
     },
     answer: {
-      ja: "端末の「設定」アプリから、本アプリの通知が許可されているかご確認ください。また、おやすみモードや集中モードが有効になっていないかもご確認ください。",
-      en: "Please check if notifications are enabled for this app in your device Settings. Also, make sure Do Not Disturb or Focus mode is not enabled.",
+      ja: "録音した音声は採点・評価処理のためにのみ使用されます。処理が完了した後、当社のサーバーには保存されません。詳細はプライバシーポリシーをご確認ください。",
+      ko: "녹음한 음성은 채점・평가 처리를 위해서만 사용됩니다. 처리가 완료된 후에는 당사 서버에 저장되지 않습니다. 자세한 내용은 개인정보 처리방침을 확인해 주세요.",
+      en: "Your recorded audio is used only for scoring and evaluation processing. After processing is complete, it is not stored on our servers. Please refer to our Privacy Policy for more details.",
     },
   },
   {
     question: {
-      ja: "購入した機能を復元するには？",
+      ja: "採点結果や学習履歴はどこに保存されますか？",
+      ko: "채점 결과나 학습 기록은 어디에 저장되나요？",
+      en: "Where are my scores and learning history stored?",
+    },
+    answer: {
+      ja: "採点結果や学習履歴はお使いの端末内にのみ保存されます。クラウドへの同期は行われません。アプリをアンインストールするとすべてのデータが削除されます。",
+      ko: "채점 결과나 학습 기록은 사용 중인 기기 내에만 저장됩니다. 클라우드 동기화는 이루어지지 않습니다. 앱을 삭제하면 모든 데이터가 삭제됩니다.",
+      en: "Your scores and learning history are stored only on your device. Cloud synchronization is not performed. Uninstalling the app will delete all data.",
+    },
+  },
+  {
+    question: {
+      ja: "購入を復元するにはどうすればよいですか？",
+      ko: "구매를 복원하려면 어떻게 하나요？",
       en: "How do I restore my purchases?",
     },
     answer: {
-      ja: "アプリ内の「設定」→「購入を復元」をタップしてください。同じApple ID / Googleアカウントでサインインしている必要があります。",
-      en: 'Go to "Settings" → "Restore Purchases" in the app. You must be signed in with the same Apple ID / Google account.',
+      ja: "アプリ内の「設定」→「購入を復元」をタップしてください。購入時と同じApple IDでサインインしている必要があります。",
+      ko: '앱 내 "설정" → "구매 복원"을 탭해 주세요. 구매 시와 동일한 Apple ID로 로그인되어 있어야 합니다.',
+      en: 'Go to "Settings" → "Restore Purchases" in the app. You must be signed in with the same Apple ID you used when purchasing.',
     },
   },
   {
     question: {
-      ja: "アプリのデータの保存期間は？",
-      en: "How long is app data retained?",
+      ja: "サブスクリプションを解約するにはどうすればよいですか？",
+      ko: "구독을 해지하려면 어떻게 하나요？",
+      en: "How do I cancel my subscription?",
     },
     answer: {
-      ja: "学習進捗・バッジ・カスタム単語帳・アプリ設定などのデータは、アプリを削除するまで端末内に保存されます。クイズの日次履歴のみ7日間で自動クリーンアップされます。アプリを削除（アンインストール）すると、すべてのデータが自動的にリセットされますのでご注意ください。",
-      en: "Data such as learning progress, badges, custom word lists, and app settings are stored on your device until the app is deleted. Only daily quiz history is automatically cleaned up after 7 days. Please note that uninstalling the app will automatically reset all data.",
+      ja: "サブスクリプションの解約はiOSの場合、「設定」→「Apple ID」→「サブスクリプション」から行えます。解約後も現在の請求期間が終了するまでプレミアム機能を引き続きご利用いただけます。",
+      ko: "구독 해지는 iOS의 경우 '설정' → 'Apple ID' → '구독'에서 할 수 있습니다. 해지 후에도 현재 청구 기간이 종료될 때까지 프리미엄 기능을 계속 이용하실 수 있습니다.",
+      en: "On iOS, you can cancel your subscription from Settings → Apple ID → Subscriptions. After cancellation, you can continue to use premium features until the end of the current billing period.",
     },
   },
   {
     question: {
-      ja: "サブスクリプションを解除するとどうなりますか？",
-      en: "What happens when I cancel my subscription?",
+      ja: "1日の練習回数に制限はありますか？",
+      ko: "1일 연습 횟수에 제한이 있나요？",
+      en: "Is there a daily practice limit?",
     },
     answer: {
-      ja: "サブスクリプションを解除しても、My単語帳に登録済みの単語はそのまま保持されます。ただし、無料プランの単語数上限を超えている場合、単語数を上限以下に削減するまで新たに単語を追加することはできません。",
-      en: "Even after canceling your subscription, the words saved in My Vocabulary will be retained. However, if the number of words exceeds the free plan limit, you will not be able to add new words until you reduce the count below the limit.",
+      ja: "プランによって1日のクイズ実施回数に上限があります。上限に達した場合は翌日にリセットされます。",
+      ko: "플랜에 따라 1일 퀴즈 실시 횟수에 상한이 있습니다. 상한에 달한 경우 다음 날 초기화됩니다.",
+      en: "There is a daily quiz limit depending on your plan. The limit resets the next day once reached.",
     },
   },
 ];
@@ -181,7 +222,7 @@ function LanguageSelector({
 // ========================================
 // メインページ
 // ========================================
-export default function KantanSupportPage() {
+export default function SpeakKnockSupportPage() {
   const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
   const currentYear = new Date().getFullYear();
@@ -191,7 +232,16 @@ export default function KantanSupportPage() {
       <div className="max-w-2xl mx-auto">
         {/* ヘッダー */}
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">カン単</h1>
+          <div className="flex justify-center mb-4">
+            <Image
+              src={appIcon}
+              alt="SpeakKnock"
+              width={80}
+              height={80}
+              className="rounded-2xl"
+            />
+          </div>
+          <h1 className="text-3xl font-bold mb-2">SpeakKnock</h1>
           <p className="text-gray-600">{t.support}</p>
         </header>
 
@@ -284,7 +334,7 @@ export default function KantanSupportPage() {
           <SectionTitle>{t.privacyPolicy}</SectionTitle>
           <p className="text-gray-700 mb-4">{t.privacyPolicyText}</p>
           <Link
-            href="/support/kantan/privacy"
+            href="/support/speak-knock/privacy"
             className="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-200 transition-colors"
           >
             <svg
@@ -321,7 +371,7 @@ export default function KantanSupportPage() {
       {/* フッター */}
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="max-w-2xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>© {currentYear} カン単. All rights reserved.</p>
+          <p>&copy; {currentYear} SpeakKnock. All rights reserved.</p>
         </div>
       </footer>
     </main>

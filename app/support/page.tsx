@@ -51,20 +51,20 @@ const APPS: {
     },
   },
   {
-    id: "kantan",
-    name: { ja: "カン単", en: "Kantan" },
-    icon: "/kantan.png",
-    href: "/support/kantan",
+    id: "voka-king",
+    name: { ja: "VOKA KING", en: "VOKA KING" },
+    icon: "/voka_king.png",
+    href: "/support/voka-king",
     description: {
       ja: "サポート・FAQ・お問い合わせ",
       en: "Support, FAQ & Contact",
     },
   },
   {
-    id: "voka-king",
-    name: { ja: "VOKA KING", en: "VOKA KING" },
-    icon: "/voka_king.png",
-    href: "/support/voka-king",
+    id: "speak-knock",
+    name: { ja: "SpeakKnock", en: "SpeakKnock" },
+    icon: "/speak_knock.png",
+    href: "/support/speak-knock",
     description: {
       ja: "サポート・FAQ・お問い合わせ",
       en: "Support, FAQ & Contact",

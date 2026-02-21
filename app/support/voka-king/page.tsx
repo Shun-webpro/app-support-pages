@@ -13,9 +13,10 @@ const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
 // ========================================
 // 言語定義
 // ========================================
-type Language = "ko" | "en";
+type Language = "ja" | "ko" | "en";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
   { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "en", label: "English", flag: "🇺🇸🇬🇧🇦🇺" },
 ];
@@ -39,6 +40,22 @@ const TRANSLATIONS: Record<Language, {
   privacyPolicyText: string;
   backToHub: string;
 }> = {
+  ja: {
+    support: "サポート",
+    aboutSupport: "サポートについて",
+    aboutSupportText: "VOKA KINGをご利用いただきありがとうございます。ご質問や問題がございましたら、以下のFAQをご確認いただくか、お問い合わせください。",
+    faq: "よくある質問",
+    contactUs: "お問い合わせ",
+    contactText: "上記で解決策が見つからなかった場合は、メールでお問い合わせください。",
+    contactButton: "メールで問い合わせる",
+    responseTime: "返信目安",
+    responseTimeText: "お問い合わせへの返信は通常48時間以内に行っております。ご了承ください。",
+    supportedLanguages: "対応言語",
+    supportedLanguagesText: "日本語・韓国語・英語でお問い合わせいただけます。",
+    privacyPolicy: "プライバシーポリシー",
+    privacyPolicyText: "プライバシーポリシーはこちらからご確認いただけます。",
+    backToHub: "アプリ一覧に戻る",
+  },
   ko: {
     support: "지원",
     aboutSupport: "지원 안내",
@@ -82,50 +99,60 @@ const FAQ_DATA: {
 }[] = [
   {
     question: {
+      ja: "データは他のデバイスと同期されますか？",
       ko: "데이터가 다른 기기와 동기화되나요?",
       en: "Is my data synced across devices?",
     },
     answer: {
+      ja: "現在、データはお使いのデバイスにのみ保存されています。将来的にクラウド同期機能の追加を検討しています。",
       ko: "현재 데이터는 사용 중인 기기에만 저장됩니다. 향후 클라우드 동기화 기능 추가를 검토하고 있습니다.",
       en: "Currently, your data is stored only on your device. We are considering adding cloud sync in the future.",
     },
   },
   {
     question: {
+      ja: "通知が届きません",
       ko: "알림이 오지 않습니다",
       en: "I'm not receiving notifications",
     },
     answer: {
+      ja: "端末の設定でこのアプリの通知が許可されているか確認してください。また、おやすみモードや集中モードが有効になっていないかもご確認ください。",
       ko: "기기 설정에서 이 앱의 알림이 허용되어 있는지 확인해 주세요. 또한 방해금지 모드나 집중 모드가 활성화되어 있지 않은지도 확인해 주세요.",
       en: "Please check if notifications are enabled for this app in your device Settings. Also, make sure Do Not Disturb or Focus mode is not enabled.",
     },
   },
   {
     question: {
+      ja: "購入した機能を復元するにはどうすればいいですか？",
       ko: "구매한 기능을 복원하려면 어떻게 하나요?",
       en: "How do I restore my purchases?",
     },
     answer: {
+      ja: 'アプリ内の「設定」→「購入を復元」をタップしてください。同じApple ID / Googleアカウントでログインしている必要があります。',
       ko: '앱 내 "설정" → "구매 복원"을 탭해 주세요. 동일한 Apple ID / Google 계정으로 로그인되어 있어야 합니다.',
       en: 'Go to "Settings" → "Restore Purchases" in the app. You must be signed in with the same Apple ID / Google account.',
     },
   },
   {
     question: {
+      ja: "アプリデータの保存期間はどのくらいですか？",
       ko: "앱 데이터의 보존 기간은 어떻게 되나요?",
       en: "How long is app data retained?",
     },
     answer: {
+      ja: "学習進捗、バッジ、カスタム単語帳、アプリ設定などのデータはアプリを削除するまで端末に保存されます。日次クイズの記録のみ7日後に自動的に削除されます。アプリをアンインストールするとすべてのデータが初期化されますのでご注意ください。",
       ko: "학습 진행, 뱃지, 커스텀 단어장, 앱 설정 등의 데이터는 앱을 삭제할 때까지 기기에 저장됩니다. 일일 퀴즈 기록만 7일 후 자동으로 정리됩니다. 앱을 삭제(제거)하면 모든 데이터가 자동으로 초기화되므로 주의해 주세요.",
       en: "Data such as learning progress, badges, custom word lists, and app settings are stored on your device until the app is deleted. Only daily quiz history is automatically cleaned up after 7 days. Please note that uninstalling the app will automatically reset all data.",
     },
   },
   {
     question: {
+      ja: "サブスクリプションをキャンセルするとどうなりますか？",
       ko: "구독을 해지하면 어떻게 되나요?",
       en: "What happens when I cancel my subscription?",
     },
     answer: {
+      ja: "サブスクリプションをキャンセルしても、My単語帳に登録した単語はそのまま保持されます。ただし、無料プランの単語数の上限を超えている場合は、単語数を上限以下に減らすまで新しい単語を追加できません。",
       ko: "구독을 해지하더라도 My 단어장에 등록한 단어는 그대로 유지됩니다. 다만, 무료 플랜의 단어 수 상한을 초과한 경우에는 단어 수를 상한 이하로 줄일 때까지 새로운 단어를 추가할 수 없습니다.",
       en: "Even after canceling your subscription, the words saved in My Vocabulary will be retained. However, if the number of words exceeds the free plan limit, you will not be able to add new words until you reduce the count below the limit.",
     },
@@ -184,7 +211,7 @@ function LanguageSelector({
 // メインページ
 // ========================================
 export default function VokaKingSupportPage() {
-  const [lang, setLang] = useState<Language>("ko");
+  const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
   const currentYear = new Date().getFullYear();
 
