@@ -13,12 +13,14 @@ const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
 // ========================================
 // 言語定義
 // ========================================
-type Language = "ja" | "ko" | "en";
+type Language = "ja" | "ko" | "en" | "ar" | "zh-TW";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "ja", label: "日本語", flag: "🇯🇵" },
   { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "ar", label: "العربية", flag: "🇸🇦" },
+  { code: "zh-TW", label: "繁體中文", flag: "🇹🇼" },
 ];
 
 // ========================================
@@ -51,7 +53,7 @@ const TRANSLATIONS: Record<Language, {
     responseTime: "返信目安",
     responseTimeText: "お問い合わせへの返答は通常48時間以内を目安にしております。ご了承ください。",
     supportedLanguages: "対応言語",
-    supportedLanguagesText: "日本語・英語でお問い合わせいただけます。",
+    supportedLanguagesText: "日本語・韓国語・アラビア語・中国語・英語でお問い合わせいただけます。",
     privacyPolicy: "プライバシーポリシー",
     privacyPolicyText: "プライバシーポリシーはこちらでご確認いただけます。",
     backToHub: "アプリ一覧に戻る",
@@ -67,7 +69,7 @@ const TRANSLATIONS: Record<Language, {
     responseTime: "응답 시간",
     responseTimeText: "문의에 대한 답변은 보통 48시간 이내에 드리고 있습니다. 양해 부탁드립니다.",
     supportedLanguages: "지원 언어",
-    supportedLanguagesText: "일본어・한국어・영어로 문의하실 수 있습니다.",
+    supportedLanguagesText: "일본어・한국어・아랍어・중국어・영어로 문의하실 수 있습니다.",
     privacyPolicy: "개인정보 처리방침",
     privacyPolicyText: "개인정보 처리방침은 여기에서 확인하세요.",
     backToHub: "앱 목록으로 돌아가기",
@@ -83,10 +85,42 @@ const TRANSLATIONS: Record<Language, {
     responseTime: "Response Time",
     responseTimeText: "We aim to respond to inquiries usually within 48 hours. Thank you for your patience.",
     supportedLanguages: "Supported Languages",
-    supportedLanguagesText: "We accept inquiries in Japanese, Korean, and English.",
+    supportedLanguagesText: "We accept inquiries in Japanese, Korean, Arabic, Chinese, and English.",
     privacyPolicy: "Privacy Policy",
     privacyPolicyText: "Please check here for our privacy policy.",
     backToHub: "Back to App List",
+  },
+  ar: {
+    support: "الدعم",
+    aboutSupport: "حول الدعم",
+    aboutSupportText: "شكرًا لاستخدامك SpeakKnock. إذا كانت لديك أي أسئلة أو مشاكل، يرجى مراجعة الأسئلة الشائعة أدناه أو التواصل معنا.",
+    faq: "الأسئلة الشائعة",
+    contactUs: "اتصل بنا",
+    contactText: "إذا لم تجد حلاً أعلاه، يرجى التواصل معنا عبر البريد الإلكتروني.",
+    contactButton: "التواصل عبر البريد الإلكتروني",
+    responseTime: "وقت الاستجابة",
+    responseTimeText: "نهدف للرد على الاستفسارات عادةً خلال 48 ساعة. شكرًا لصبركم.",
+    supportedLanguages: "اللغات المدعومة",
+    supportedLanguagesText: "نقبل الاستفسارات باللغات اليابانية والكورية والعربية والصينية والإنجليزية.",
+    privacyPolicy: "سياسة الخصوصية",
+    privacyPolicyText: "يرجى الاطلاع على سياسة الخصوصية هنا.",
+    backToHub: "العودة إلى قائمة التطبيقات",
+  },
+  "zh-TW": {
+    support: "支援",
+    aboutSupport: "關於支援",
+    aboutSupportText: "感謝您使用 SpeakKnock。如果您有任何問題，請查看以下常見問題或與我們聯繫。",
+    faq: "常見問題",
+    contactUs: "聯繫我們",
+    contactText: "如果以上內容無法解決您的問題，請透過電子郵件與我們聯繫。",
+    contactButton: "透過電子郵件聯繫",
+    responseTime: "回覆時間",
+    responseTimeText: "我們通常會在 48 小時內回覆您的詢問。感謝您的耐心等待。",
+    supportedLanguages: "支援語言",
+    supportedLanguagesText: "我們接受日語、韓語、阿拉伯語、中文和英語的諮詢。",
+    privacyPolicy: "隱私權政策",
+    privacyPolicyText: "請在此查看我們的隱私權政策。",
+    backToHub: "返回應用程式列表",
   },
 };
 
@@ -102,11 +136,15 @@ const FAQ_DATA: {
       ja: "Free・Standard・Pro・Premiumプランの違いは何ですか？",
       ko: "Free・Standard・Pro・Premium 플랜의 차이점은 무엇인가요？",
       en: "What is the difference between Free, Standard, Pro, and Premium plans?",
+      ar: "ما الفرق بين خطط Free وStandard وPro وPremium؟",
+      "zh-TW": "Free、Standard、Pro、Premium 方案有什麼不同？",
     },
     answer: {
       ja: "Freeプランは基本的なスピーキング練習が可能です。Standardプランでは音声の文字起こし（Whisper API）が追加されます。ProプランはAI採点（GPT-4o-mini）も含まれます。Premiumプランではさらに発音評価（Azure Cognitive Services）が利用できます。",
       ko: "Free 플랜은 기본적인 스피킹 연습이 가능합니다. Standard 플랜은 음성 텍스트 변환（Whisper API）이 추가됩니다. Pro 플랜은 AI 채점（GPT-4o-mini）도 포함됩니다. Premium 플랜은 추가로 발음 평가（Azure Cognitive Services）를 이용할 수 있습니다.",
       en: "The Free plan offers basic speaking practice. The Standard plan adds voice transcription (Whisper API). The Pro plan also includes AI scoring (GPT-4o-mini). The Premium plan additionally provides pronunciation assessment (Azure Cognitive Services).",
+      ar: "تتيح خطة Free ممارسة التحدث الأساسية. تضيف خطة Standard تحويل الصوت إلى نص (Whisper API). تتضمن خطة Pro أيضًا التقييم بالذكاء الاصطناعي (GPT-4o-mini). توفر خطة Premium بالإضافة إلى ذلك تقييم النطق (Azure Cognitive Services).",
+      "zh-TW": "Free 方案提供基本的口說練習。Standard 方案增加了語音轉文字功能（Whisper API）。Pro 方案還包含 AI 評分（GPT-4o-mini）。Premium 方案另外提供發音評估（Azure Cognitive Services）。",
     },
   },
   {
@@ -114,11 +152,15 @@ const FAQ_DATA: {
       ja: "録音した音声はどこかに保存されますか？",
       ko: "녹음한 음성은 어딘가에 저장되나요？",
       en: "Is my recorded audio stored anywhere?",
+      ar: "هل يتم تخزين الصوت المسجل في أي مكان؟",
+      "zh-TW": "錄製的音檔會被儲存在某處嗎？",
     },
     answer: {
       ja: "録音した音声は採点・評価処理のためにのみ使用されます。処理が完了した後、当社のサーバーには保存されません。詳細はプライバシーポリシーをご確認ください。",
       ko: "녹음한 음성은 채점・평가 처리를 위해서만 사용됩니다. 처리가 완료된 후에는 당사 서버에 저장되지 않습니다. 자세한 내용은 개인정보 처리방침을 확인해 주세요.",
       en: "Your recorded audio is used only for scoring and evaluation processing. After processing is complete, it is not stored on our servers. Please refer to our Privacy Policy for more details.",
+      ar: "يُستخدم الصوت المسجل فقط لأغراض التقييم والتصحيح. بعد اكتمال المعالجة، لا يتم تخزينه على خوادمنا. يرجى الرجوع إلى سياسة الخصوصية لمزيد من التفاصيل.",
+      "zh-TW": "錄製的音檔僅用於評分和評估處理。處理完成後，不會儲存在我們的伺服器上。詳情請參閱隱私權政策。",
     },
   },
   {
@@ -126,11 +168,15 @@ const FAQ_DATA: {
       ja: "採点結果や学習履歴はどこに保存されますか？",
       ko: "채점 결과나 학습 기록은 어디에 저장되나요？",
       en: "Where are my scores and learning history stored?",
+      ar: "أين يتم تخزين نتائج التقييم وسجل التعلم؟",
+      "zh-TW": "評分結果和學習記錄儲存在哪裡？",
     },
     answer: {
       ja: "採点結果や学習履歴はお使いの端末内にのみ保存されます。クラウドへの同期は行われません。アプリをアンインストールするとすべてのデータが削除されます。",
       ko: "채점 결과나 학습 기록은 사용 중인 기기 내에만 저장됩니다. 클라우드 동기화는 이루어지지 않습니다. 앱을 삭제하면 모든 데이터가 삭제됩니다.",
       en: "Your scores and learning history are stored only on your device. Cloud synchronization is not performed. Uninstalling the app will delete all data.",
+      ar: "يتم تخزين نتائج التقييم وسجل التعلم على جهازك فقط. لا تتم المزامنة مع السحابة. سيؤدي حذف التطبيق إلى حذف جميع البيانات.",
+      "zh-TW": "評分結果和學習記錄僅儲存在您的裝置上。不會進行雲端同步。解除安裝應用程式將刪除所有資料。",
     },
   },
   {
@@ -138,11 +184,15 @@ const FAQ_DATA: {
       ja: "購入を復元するにはどうすればよいですか？",
       ko: "구매를 복원하려면 어떻게 하나요？",
       en: "How do I restore my purchases?",
+      ar: "كيف يمكنني استعادة مشترياتي؟",
+      "zh-TW": "如何恢復我的購買？",
     },
     answer: {
       ja: "アプリ内の「設定」→「購入を復元」をタップしてください。購入時と同じApple IDでサインインしている必要があります。",
       ko: '앱 내 "설정" → "구매 복원"을 탭해 주세요. 구매 시와 동일한 Apple ID로 로그인되어 있어야 합니다.',
       en: 'Go to "Settings" → "Restore Purchases" in the app. You must be signed in with the same Apple ID you used when purchasing.',
+      ar: "انتقل إلى \"الإعدادات\" ← \"استعادة المشتريات\" في التطبيق. يجب أن تكون مسجلاً الدخول بنفس Apple ID الذي استخدمته عند الشراء.",
+      "zh-TW": "請在應用程式中前往「設定」→「恢復購買」。您必須使用購買時相同的 Apple ID 登入。",
     },
   },
   {
@@ -150,11 +200,15 @@ const FAQ_DATA: {
       ja: "サブスクリプションを解約するにはどうすればよいですか？",
       ko: "구독을 해지하려면 어떻게 하나요？",
       en: "How do I cancel my subscription?",
+      ar: "كيف يمكنني إلغاء اشتراكي؟",
+      "zh-TW": "如何取消訂閱？",
     },
     answer: {
       ja: "サブスクリプションの解約はiOSの場合、「設定」→「Apple ID」→「サブスクリプション」から行えます。解約後も現在の請求期間が終了するまでプレミアム機能を引き続きご利用いただけます。",
       ko: "구독 해지는 iOS의 경우 '설정' → 'Apple ID' → '구독'에서 할 수 있습니다. 해지 후에도 현재 청구 기간이 종료될 때까지 프리미엄 기능을 계속 이용하실 수 있습니다.",
       en: "On iOS, you can cancel your subscription from Settings → Apple ID → Subscriptions. After cancellation, you can continue to use premium features until the end of the current billing period.",
+      ar: "على iOS، يمكنك إلغاء اشتراكك من الإعدادات ← Apple ID ← الاشتراكات. بعد الإلغاء، يمكنك الاستمرار في استخدام الميزات المميزة حتى نهاية فترة الفوترة الحالية.",
+      "zh-TW": "在 iOS 上，您可以從「設定」→「Apple ID」→「訂閱項目」取消訂閱。取消後，您可以繼續使用進階功能直到目前帳單週期結束。",
     },
   },
   {
@@ -162,11 +216,15 @@ const FAQ_DATA: {
       ja: "1日の練習回数に制限はありますか？",
       ko: "1일 연습 횟수에 제한이 있나요？",
       en: "Is there a daily practice limit?",
+      ar: "هل هناك حد يومي للتمرين؟",
+      "zh-TW": "每日練習次數有限制嗎？",
     },
     answer: {
       ja: "プランによって1日のクイズ実施回数に上限があります。上限に達した場合は翌日にリセットされます。",
       ko: "플랜에 따라 1일 퀴즈 실시 횟수에 상한이 있습니다. 상한에 달한 경우 다음 날 초기화됩니다.",
       en: "There is a daily quiz limit depending on your plan. The limit resets the next day once reached.",
+      ar: "هناك حد يومي للاختبارات حسب خطتك. يتم إعادة تعيين الحد في اليوم التالي عند الوصول إليه.",
+      "zh-TW": "根據您的方案，每日測驗次數有上限。達到上限後，將在隔天重置。",
     },
   },
 ];
