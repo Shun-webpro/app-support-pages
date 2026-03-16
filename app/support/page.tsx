@@ -70,6 +70,26 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "pronova",
+    name: { ja: "Pronova", en: "Pronova" },
+    icon: "/pronova.png",
+    href: "/support/pronova",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
+    id: "flash-english",
+    name: { ja: "Flash English", en: "Flash English" },
+    icon: "/flashenglish.png",
+    href: "/support/flash-english",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
