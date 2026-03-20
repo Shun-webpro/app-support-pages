@@ -90,6 +90,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "pixvault",
+    name: { ja: "PixVault", en: "PixVault" },
+    icon: "/pixvault.png",
+    href: "/support/pixvault",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
