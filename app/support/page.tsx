@@ -92,7 +92,7 @@ const APPS: {
   },
   {
     id: "pixvault",
-    name: { ja: "PixVault", en: "PixVault" },
+    name: { ja: "KeyAlbum", en: "KeyAlbum" },
     icon: "/pixvault.png",
     href: "/support/pixvault",
     description: {

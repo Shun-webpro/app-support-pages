@@ -9,23 +9,21 @@ import appIcon from "@/app/images/Pixvault.png";
 // 設定値
 // ========================================
 const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
-const LAST_UPDATED_JA = "2026年3月20日";
-const LAST_UPDATED_EN = "March 20, 2026";
-const LAST_UPDATED_KO = "2026년 3월 20일";
-const LAST_UPDATED_ZH_TW = "2026年3月20日";
-const LAST_UPDATED_AR = "20 مارس 2026";
+const LAST_UPDATED_JA = "2026年3月21日";
+const LAST_UPDATED_EN = "March 21, 2026";
+const LAST_UPDATED_KO = "2026년 3월 21일";
+const LAST_UPDATED_ZH_TW = "2026年3月21日";
 
 // ========================================
 // 言語定義
 // ========================================
-type Language = "ja" | "en" | "ko" | "zh-TW" | "ar";
+type Language = "ja" | "en" | "ko" | "zh-TW";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "ja", label: "日本語", flag: "🇯🇵" },
   { code: "en", label: "English", flag: "🇺🇸" },
   { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "zh-TW", label: "繁體中文", flag: "🇹🇼" },
-  { code: "ar", label: "العربية", flag: "🇸🇦" },
 ];
 
 // ========================================
@@ -70,6 +68,12 @@ const TRANSLATIONS: Record<Language, {
         intro: string;
         items: string[];
       };
+    };
+    permissions: {
+      title: string;
+      intro: string;
+      items: { name: string; purpose: string }[];
+      note: string;
     };
     purpose: {
       title: string;
@@ -163,7 +167,7 @@ const TRANSLATIONS: Record<Language, {
     sections: {
       intro: {
         title: "1. はじめに",
-        content: "PixVault（以下「本アプリ」）は、写真・動画をデバイス内に安全に保存・管理するためのアプリです。本プライバシーポリシーは、本アプリをご利用いただく際のデータの取り扱いについて説明します。",
+        content: "KeyAlbum（以下「本アプリ」）は、写真・動画をデバイス内に安全に保存・管理するためのアプリです。本アプリはPINや生体認証（Face ID・指紋認証）によるロック機能、写真エディター、カメラ撮影機能を備えています。本プライバシーポリシーは、本アプリをご利用いただく際のデータの取り扱いについて説明します。",
         consent: "本アプリをご利用いただくことで、本プライバシーポリシーに記載された内容に同意したものとみなします。同意いただけない場合は、本アプリのご利用をお控えください。",
       },
       dataCollection: {
@@ -173,10 +177,11 @@ const TRANSLATIONS: Record<Language, {
           photos: {
             title: "(a) 写真・動画データ",
             items: [
-              "ユーザーがインポートまたは撮影した写真・動画",
-              "自動生成されるサムネイル画像",
+              "ユーザーがインポート、撮影、または編集した写真・動画",
+              "自動生成されるサムネイル画像（300×300ピクセル）",
               "写真のメタデータ（幅・高さ・ファイルサイズ・作成日時）",
               "動画のメタデータ（再生時間・ファイルサイズ）",
+              "写真エディターで作成した編集済み画像（テキスト・スタンプ・フィルター等の適用結果）",
               "すべてのデータはアプリ専用フォルダに保存され、外部には送信されません",
             ],
           },
@@ -185,15 +190,17 @@ const TRANSLATIONS: Record<Language, {
             items: [
               "ユーザーが作成したフォルダ名・フォルダID",
               "フォルダのカバー写真設定",
+              "フォルダおよび写真の並び順情報",
               "フォルダ内の写真・動画の管理情報（metadata.json）",
             ],
           },
           settings: {
-            title: "(c) アプリ設定",
+            title: "(c) アプリ設定・認証情報",
             items: [
               "テーマカラー設定",
               "インポート時の元データ削除設定",
-              "PINロック設定（PINはSHA-256ハッシュ化されて保存）",
+              "PINロック設定（PINはSHA-256ハッシュ化され、OSのセキュアストレージに保存）",
+              "生体認証（Face ID・指紋認証）の有効/無効設定（認証データ自体はOSが管理し、アプリからはアクセスできません）",
             ],
           },
         },
@@ -207,126 +214,133 @@ const TRANSLATIONS: Record<Language, {
             "健康・フィットネスデータ",
             "広告目的のトラッキングデータ",
             "利用状況のアナリティクスデータ",
-            "インターネットを通じて外部に送信されるデータ",
+            "生体認証の生データ（顔・指紋のデータ自体）",
           ],
         },
       },
+      permissions: {
+        title: "3. アプリが使用する権限",
+        intro: "本アプリは以下の端末権限を使用します。すべての権限はアプリの機能を提供するためにのみ使用され、データの外部送信には使用されません。",
+        items: [
+          { name: "フォトライブラリ", purpose: "写真・動画のインポートおよびエクスポート、インポート後の元データ削除" },
+          { name: "カメラ", purpose: "アプリ内での写真・動画の撮影" },
+          { name: "マイク", purpose: "動画撮影時の音声録音" },
+          { name: "Face ID / 指紋認証", purpose: "アプリのロック解除（生体認証データはOSが管理し、アプリには保存されません）" },
+        ],
+        note: "すべての権限はOSの許可ダイアログを通じてユーザーに確認されます。許可しない場合でも、該当機能以外のアプリ機能は正常にご利用いただけます。",
+      },
       purpose: {
-        title: "3. 情報の利用目的",
-        intro: "端末内に保存されるデータは以下の目的にのみ使用します：",
-        tableHeaders: ["情報の種類", "利用目的"],
+        title: "4. 情報の利用目的",
+        intro: "端末内に保存されるデータは、以下の目的でのみ使用されます：",
+        tableHeaders: ["データ", "利用目的"],
         rows: [
-          ["写真・動画データ", "アプリ内での閲覧・編集・管理"],
-          ["サムネイル画像", "ギャラリー表示の高速化"],
-          ["メタデータ", "ファイル情報の表示・ソート機能"],
-          ["フォルダ情報", "写真・動画の整理・分類"],
-          ["テーマ設定", "UIのカスタマイズ表示"],
-          ["PINハッシュ", "アプリロックの認証"],
+          ["写真・動画", "アプリ内での安全な保存・表示・編集・エクスポート"],
+          ["サムネイル", "一覧画面での高速表示"],
+          ["メタデータ", "ファイル情報の表示・圧縮率の計算・ストレージ使用量の表示"],
+          ["フォルダ情報", "写真・動画の整理・並び替え・カバー写真の表示"],
+          ["PIN / ハッシュ", "アプリロックによるプライバシー保護"],
+          ["生体認証設定", "Face ID・指紋認証によるロック解除の有効/無効管理"],
+          ["テーマ設定", "ユーザーの好みに合わせたUI表示"],
+          ["元データ削除設定", "インポート後にカメラロールから元の写真を自動削除するかの管理"],
         ],
       },
       thirdParty: {
-        title: "4. 第三者サービスへの情報提供",
-        content: "本アプリは、いかなる第三者サービス（広告ネットワーク、アナリティクス、クラウドストレージ等）も利用していません。ユーザーのデータは一切外部に送信されません。",
-        important: "重要: 本アプリはインターネット接続を必要とせず、完全にオフラインで動作します。ユーザーの個人情報を販売・共有・提供することは一切ありません。",
+        title: "5. 第三者サービスへの情報提供",
+        content: "本アプリはネットワーク通信を一切行いません。写真・動画・設定情報を含むすべてのデータは端末内にのみ保存され、外部のサーバー・クラウドサービス・広告ネットワーク・アナリティクスサービスへの送信は行われません。",
+        important: "重要：本アプリはクラウド同期・バックアップ機能を提供していません。アプリを削除するとすべてのデータが失われます。",
       },
       retention: {
-        title: "5. データの保存と保持期間",
+        title: "6. データの保存と保持期間",
         local: {
-          title: "端末内（ローカルストレージ）",
-          intro: "すべてのデータはユーザーの端末内のアプリ専用ディレクトリにのみ保存されます：",
+          title: "6-1. ローカルデータ",
+          intro: "すべてのデータはユーザーが明示的に削除するまで端末内に保存されます。",
           items: [
-            "写真・動画ファイル（アプリ専用フォルダ）",
-            "サムネイル画像",
-            "フォルダ・写真メタデータ（metadata.json）",
-            "アプリ設定（AsyncStorage）",
-            "PINハッシュ（Secure Store / OS レベルの安全なストレージ）",
+            "写真・動画：ユーザーが削除操作を行うまで保持",
+            "フォルダ情報：フォルダ削除時に関連データとともに削除",
+            "PIN情報：PINロック無効化時にセキュアストレージから削除",
+            "アプリ設定：アプリの削除時にすべて消去",
           ],
-          deletion: "これらのデータは、アプリをアンインストールすることで完全に削除されます。クラウド同期は行われないため、再インストール時にデータは復元されません。",
+          deletion: "※ アプリをアンインストールすると、すべてのローカルデータが完全に削除されます。",
         },
         server: {
-          title: "サーバー",
-          content: "本アプリは自社サーバーを持たず、ユーザーデータをサーバーに送信・保存することはありません。すべてのデータ処理は端末内で完結します。",
+          title: "6-2. サーバーサイドデータ",
+          content: "本アプリはサーバーを使用していないため、サーバーサイドに保存されるデータは一切ありません。",
         },
       },
       security: {
-        title: "6. データのセキュリティ",
+        title: "7. データのセキュリティ",
         items: [
-          "アプリ専用ディレクトリ: 写真・動画は他のアプリからアクセスできないアプリ専用フォルダに保存されます",
-          "PINロック: オプションの4桁PINによるアプリロック機能を提供します",
-          "PINハッシュ化: PINはSHA-256でソルト付きハッシュ化され、Secure Store（OSレベルの安全なストレージ）に保存されます",
-          "オフライン設計: ネットワーク通信を一切行わないため、通信経由のデータ漏洩リスクがありません",
-          "ローカル完結: すべてのデータ処理（圧縮・編集・サムネイル生成等）は端末内で行われます",
+          "すべてのデータは端末内のアプリ専用サンドボックスに保存（他のアプリからアクセス不可）",
+          "PINはSHA-256でハッシュ化され、OSのセキュアストレージ（Keychain / Keystore）に保存",
+          "生体認証（Face ID・指紋認証）はOSのSecure Enclaveで処理され、アプリに生体データは保存されません",
+          "ネットワーク通信を一切行わないため、通信経路からの漏洩リスクなし",
+          "写真はJPEG形式で保存（追加の暗号化は行っていません）",
         ],
-        disclaimer: "ただし、端末の紛失・盗難、ジェイルブレイク等により端末レベルのセキュリティが侵害された場合、アプリ内データの安全性を保証することはできません。",
+        disclaimer: "※ 端末自体のセキュリティ（パスコード・暗号化等）はユーザーの責任で管理してください。",
       },
       children: {
-        title: "7. お子様のプライバシー（COPPA対応）",
-        content: "本アプリは13歳未満の子供を対象としておらず、意図的に13歳未満の子供から個人情報を収集することはありません。本アプリはデータを一切外部に送信しないため、年齢に関係なくプライバシーが保護されます。",
-        action: "13歳未満の子供が本アプリを利用していることに関するご懸念がある保護者の方は、下記お問い合わせ先までご連絡ください。",
+        title: "8. お子様のプライバシー",
+        content: "本アプリは特定の年齢層を対象としておらず、意図的にお子様の個人情報を収集することはありません。本アプリはアカウント登録が不要であり、個人情報の入力を求めることはありません。",
+        action: "お子様が本アプリを使用していることについて懸念がある場合は、下記連絡先までお問い合わせください。",
       },
       userRights: {
-        title: "8. ユーザーの権利",
+        title: "9. ユーザーの権利",
         japan: {
-          title: "8-1. 日本国内のユーザー",
+          title: "日本（個人情報保護法）",
           items: [
-            "保有する個人情報の開示請求",
-            "内容の訂正・追加・削除の請求",
-            "利用停止・消去の請求",
+            "データの確認：すべてのデータは端末内に保存されているため、いつでもアプリ内で確認可能",
+            "データの削除：アプリ内の削除機能、またはアプリのアンインストールで完全削除",
+            "データのエクスポート：写真・動画は端末の写真ライブラリにエクスポート可能",
           ],
         },
         gdpr: {
-          title: "8-2. EEA・UK のユーザー（GDPR）",
+          title: "EU（GDPR）",
           items: [
-            "アクセス権: 保有する個人データへのアクセス",
-            "訂正権: 不正確な個人データの訂正",
-            "削除権（忘れられる権利）: 個人データの削除",
-            "処理制限権: 個人データ処理の制限",
-            "データポータビリティ権: データの受け取りと転送",
-            "異議申立権: 個人データの処理に対する異議",
+            "アクセス権：すべてのデータは端末内にありアプリから直接確認可能",
+            "削除権：アプリ内で自由に削除可能",
+            "データポータビリティ：エクスポート機能で写真ライブラリに書き出し可能",
+            "処理の制限：データは端末内でのみ処理され、外部送信なし",
           ],
         },
         ccpa: {
-          title: "8-3. カリフォルニア州のユーザー（CCPA）",
+          title: "米国カリフォルニア州（CCPA）",
           items: [
-            "収集する個人情報のカテゴリと目的の開示請求",
-            "個人情報の削除請求",
-            "個人情報の販売のオプトアウト（当社は個人情報を販売しません）",
+            "知る権利：収集データは本ポリシーに記載の端末内データのみ",
+            "削除権：アプリ内またはアンインストールで完全削除",
+            "オプトアウト権：データの販売・共有は一切なし",
+            "差別禁止：権利行使によるサービス変更なし",
           ],
         },
         howTo: {
-          title: "権利行使の方法",
-          content: "本アプリはすべてのデータを端末内にのみ保存しているため、アプリのアンインストールにより全データを削除できます。個別の写真・動画・フォルダはアプリ内の削除機能で削除できます。その他の権利行使については、下記お問い合わせ先までご連絡ください。",
+          title: "権利の行使方法",
+          content: "すべてのデータは端末内に保存されているため、ほとんどの権利はアプリ内の操作で直接行使できます。追加のサポートが必要な場合は、下記のお問い合わせ先までご連絡ください。",
         },
       },
       cookies: {
-        title: "9. Cookieおよびトラッキング技術",
-        content: "本アプリはWebブラウザ上で動作するものではないため、Cookieは使用しません。また、いかなるトラッキング技術（広告ID、アナリティクスSDK等）も使用していません。Apple の App Tracking Transparency（ATT）フレームワークが要求する広告目的のトラッキングは実施していないため、ATTのプロンプトは表示されません。",
+        title: "10. Cookie・トラッキング",
+        content: "本アプリはCookie、ウェブビーコン、ピクセルタグ、その他のトラッキング技術を一切使用しません。広告識別子（IDFA/GAID）の取得も行いません。",
       },
       changes: {
-        title: "10. プライバシーポリシーの変更",
-        content: "当社は、本プライバシーポリシーを随時更新することがあります。重要な変更が生じた場合は、本ページ上部の「最終更新日」の更新によりお知らせします。",
-        consent: "変更後も本アプリを継続してご利用いただく場合は、更新後のプライバシーポリシーに同意したものとみなします。",
+        title: "11. プライバシーポリシーの変更",
+        content: "本プライバシーポリシーは、法令の変更やアプリの機能追加に伴い更新される場合があります。重要な変更がある場合は、アプリ内またはApp Storeの更新情報でお知らせします。",
+        consent: "変更後も本アプリを継続してご利用いただいた場合、変更後のプライバシーポリシーに同意したものとみなします。",
       },
       contact: {
-        title: "11. お問い合わせ",
-        content: "本プライバシーポリシーに関するご質問・権利行使の申請は、以下までお問い合わせください：",
+        title: "12. お問い合わせ",
+        content: "本プライバシーポリシーに関するご質問やお問い合わせは、以下のメールアドレスまでご連絡ください。",
         email: "メールアドレス",
-        responseTime: "お問い合わせから原則30日以内にご回答いたします。",
+        responseTime: "※ 通常48時間以内に返信いたします。",
       },
       appStoreLabel: {
-        title: "App Store Privacy Nutrition Label 対応表",
-        description: "App Store の App Privacy セクション向け開示情報です。",
-        tableHeaders: ["データの種類", "収集するか", "追跡するか", "利用目的"],
+        title: "App Store プライバシー表示",
+        description: "Apple App Store のプライバシーラベル（プライバシー栄養ラベル）に対応する情報です。",
+        tableHeaders: ["データの種類", "収集", "トラッキングに使用", "ユーザーに関連付け"],
         rows: [
-          ["写真・動画", "○（端末内のみ）", "×", "App Functionality（写真・動画の保存・管理）"],
-          ["識別子（デバイスID）", "×", "×", "—"],
-          ["利用状況データ", "×", "×", "—"],
-          ["位置情報", "×", "×", "—"],
-          ["連絡先情報", "×", "×", "—"],
-          ["氏名・メールアドレス等", "×", "×", "—"],
+          ["写真または動画", "端末内のみ", "いいえ", "いいえ"],
+          ["その他のユーザーコンテンツ", "端末内のみ", "いいえ", "いいえ"],
         ],
-        trackingNote: "「追跡」= 第三者の広告・分析目的でのデータ利用。本アプリはいずれのデータも外部に送信せず、広告目的で追跡しません。",
-        languageNote: "本プライバシーポリシーは日本語を正文とします。",
+        trackingNote: "※ 本アプリは「App Tracking Transparency」に基づくトラッキング許可を要求しません。",
+        languageNote: "対応言語：日本語・英語・韓国語・繁體中文",
       },
     },
   },
@@ -344,7 +358,7 @@ const TRANSLATIONS: Record<Language, {
     sections: {
       intro: {
         title: "1. Introduction",
-        content: "PixVault (hereinafter \"the App\") is an application for securely storing and managing photos and videos on your device. This Privacy Policy explains how data is handled when you use the App.",
+        content: "KeyAlbum (hereinafter \"the App\") is an application for securely storing and managing photos and videos on your device. The App features PIN and biometric (Face ID / fingerprint) lock, a photo editor, and an in-app camera. This Privacy Policy explains how data is handled when you use the App.",
         consent: "By using the App, you agree to the terms described in this Privacy Policy. If you do not agree, please refrain from using the App.",
       },
       dataCollection: {
@@ -354,27 +368,30 @@ const TRANSLATIONS: Record<Language, {
           photos: {
             title: "(a) Photo & Video Data",
             items: [
-              "Photos and videos imported or captured by the user",
-              "Automatically generated thumbnail images",
+              "Photos and videos imported, captured, or edited by the user",
+              "Automatically generated thumbnail images (300×300 pixels)",
               "Photo metadata (width, height, file size, creation date)",
               "Video metadata (duration, file size)",
-              "All data is stored in the app's private folder and is never sent externally",
+              "Edited images created with the photo editor (results of text, sticker, and filter applications)",
+              "All data is stored in the app's private folder and is never transmitted externally",
             ],
           },
           folders: {
             title: "(b) Folder Information",
             items: [
-              "Folder names and folder IDs created by the user",
+              "Folder names and IDs created by the user",
               "Folder cover photo settings",
-              "Management information for photos/videos within folders (metadata.json)",
+              "Folder and photo sort order information",
+              "Management data for photos and videos within folders (metadata.json)",
             ],
           },
           settings: {
-            title: "(c) App Settings",
+            title: "(c) App Settings & Authentication",
             items: [
               "Theme color settings",
-              "Delete original data on import setting",
-              "PIN lock settings (PIN is stored as a SHA-256 hash)",
+              "Delete originals after import setting",
+              "PIN lock settings (PIN is SHA-256 hashed and stored in the OS secure storage)",
+              "Biometric authentication (Face ID / fingerprint) enable/disable setting (biometric data itself is managed by the OS and is not accessible by the app)",
             ],
           },
         },
@@ -382,132 +399,139 @@ const TRANSLATIONS: Record<Language, {
           title: "2-2. Information We Do Not Collect",
           intro: "The App does not collect any of the following information:",
           items: [
-            "Personally identifiable information such as name, email, or address (no account registration required)",
+            "Personally identifiable information such as name, email address, or address (no account registration required)",
             "Location data",
             "Contacts",
-            "Health & fitness data",
+            "Health or fitness data",
             "Tracking data for advertising purposes",
             "Usage analytics data",
-            "Any data sent externally via the internet",
+            "Raw biometric data (facial or fingerprint data itself)",
           ],
         },
       },
+      permissions: {
+        title: "3. App Permissions",
+        intro: "The App uses the following device permissions. All permissions are used solely to provide app functionality and are never used to transmit data externally.",
+        items: [
+          { name: "Photo Library", purpose: "Importing and exporting photos/videos, deleting originals after import" },
+          { name: "Camera", purpose: "Taking photos and videos within the app" },
+          { name: "Microphone", purpose: "Audio recording during video capture" },
+          { name: "Face ID / Fingerprint", purpose: "App unlock (biometric data is managed by the OS and not stored by the app)" },
+        ],
+        note: "All permissions are confirmed through OS permission dialogs. If you choose not to grant a permission, other app features will still function normally.",
+      },
       purpose: {
-        title: "3. Purpose of Data Use",
+        title: "4. Purpose of Data Use",
         intro: "Data stored on the device is used only for the following purposes:",
-        tableHeaders: ["Data Type", "Purpose"],
+        tableHeaders: ["Data", "Purpose"],
         rows: [
-          ["Photo & Video Data", "Viewing, editing, and managing within the app"],
-          ["Thumbnail Images", "Faster gallery display"],
-          ["Metadata", "File information display and sorting"],
-          ["Folder Information", "Organizing and categorizing photos/videos"],
-          ["Theme Settings", "UI customization"],
-          ["PIN Hash", "App lock authentication"],
+          ["Photos & Videos", "Secure storage, display, editing, and export within the app"],
+          ["Thumbnails", "Fast display in grid views"],
+          ["Metadata", "Displaying file info, calculating compression ratios, showing storage usage"],
+          ["Folder Information", "Organizing, sorting photos/videos, and displaying cover photos"],
+          ["PIN / Hash", "Privacy protection through app lock"],
+          ["Biometric Settings", "Managing Face ID / fingerprint unlock enable/disable"],
+          ["Theme Settings", "Customizing UI appearance to user preference"],
+          ["Delete Originals Setting", "Managing whether to auto-delete photos from camera roll after import"],
         ],
       },
       thirdParty: {
-        title: "4. Third-Party Services",
-        content: "The App does not use any third-party services (ad networks, analytics, cloud storage, etc.). User data is never sent externally.",
-        important: "Important: The App does not require an internet connection and operates completely offline. We never sell, share, or provide user personal information to any third party.",
+        title: "5. Third-Party Services",
+        content: "The App does not perform any network communication. All data, including photos, videos, and settings, is stored only on the device and is never transmitted to external servers, cloud services, ad networks, or analytics services.",
+        important: "Important: The App does not provide cloud sync or backup features. All data will be lost if the app is deleted.",
       },
       retention: {
-        title: "5. Data Storage & Retention",
+        title: "6. Data Storage and Retention",
         local: {
-          title: "On-Device (Local Storage)",
-          intro: "All data is stored exclusively in the app's private directory on the user's device:",
+          title: "6-1. Local Data",
+          intro: "All data is stored on the device until explicitly deleted by the user.",
           items: [
-            "Photo & video files (app-private folder)",
-            "Thumbnail images",
-            "Folder & photo metadata (metadata.json)",
-            "App settings (AsyncStorage)",
-            "PIN hash (Secure Store / OS-level secure storage)",
+            "Photos & Videos: Retained until the user performs a delete operation",
+            "Folder Information: Deleted along with related data when a folder is deleted",
+            "PIN Information: Removed from secure storage when PIN lock is disabled",
+            "App Settings: Completely erased when the app is deleted",
           ],
-          deletion: "All data is permanently deleted when the app is uninstalled. Since there is no cloud sync, data cannot be restored upon reinstallation.",
+          deletion: "* Uninstalling the app will permanently delete all local data.",
         },
         server: {
-          title: "Server",
-          content: "The App does not have its own server and does not send or store user data on any server. All data processing is completed on the device.",
+          title: "6-2. Server-Side Data",
+          content: "The App does not use any servers, so no data is stored server-side.",
         },
       },
       security: {
-        title: "6. Data Security",
+        title: "7. Data Security",
         items: [
-          "App-Private Directory: Photos and videos are stored in a private folder inaccessible to other apps",
-          "PIN Lock: An optional 4-digit PIN lock feature is available",
-          "PIN Hashing: PINs are hashed with SHA-256 and salt, stored in Secure Store (OS-level secure storage)",
-          "Offline Design: No network communication is performed, eliminating the risk of data leakage via transmission",
-          "Local Processing: All data processing (compression, editing, thumbnail generation, etc.) is performed on the device",
+          "All data is stored in the app's sandboxed directory (inaccessible by other apps)",
+          "PIN is SHA-256 hashed and stored in the OS secure storage (Keychain / Keystore)",
+          "Biometric authentication (Face ID / fingerprint) is processed by the OS Secure Enclave; no biometric data is stored by the app",
+          "No network communication means zero risk of data leakage through network channels",
+          "Photos are stored in JPEG format (no additional encryption is applied)",
         ],
-        disclaimer: "However, we cannot guarantee the security of in-app data if device-level security is compromised through device loss, theft, jailbreaking, etc.",
+        disclaimer: "* Device-level security (passcode, encryption, etc.) is the user's responsibility.",
       },
       children: {
-        title: "7. Children's Privacy (COPPA)",
-        content: "The App is not intended for children under 13, and we do not intentionally collect personal information from children under 13. Since the App does not send any data externally, privacy is protected regardless of age.",
-        action: "If you are a parent or guardian with concerns about a child under 13 using the App, please contact us using the information below.",
+        title: "8. Children's Privacy",
+        content: "The App does not target any specific age group and does not intentionally collect personal information from children. The App does not require account registration and does not request any personal information.",
+        action: "If you have concerns about a child using the App, please contact us at the address below.",
       },
       userRights: {
-        title: "8. User Rights",
+        title: "9. User Rights",
         japan: {
-          title: "8-1. Users in Japan",
+          title: "Japan (APPI)",
           items: [
-            "Request disclosure of personal information held",
-            "Request correction, addition, or deletion of information",
-            "Request suspension or erasure of use",
+            "Data Access: All data is stored on the device and can be viewed within the app at any time",
+            "Data Deletion: Complete deletion via in-app delete function or app uninstallation",
+            "Data Export: Photos and videos can be exported to the device's photo library",
           ],
         },
         gdpr: {
-          title: "8-2. EEA & UK Users (GDPR)",
+          title: "EU (GDPR)",
           items: [
-            "Right of Access: Access to personal data held",
-            "Right to Rectification: Correction of inaccurate personal data",
-            "Right to Erasure (Right to be Forgotten): Deletion of personal data",
-            "Right to Restriction: Restriction of personal data processing",
-            "Right to Data Portability: Receiving and transferring data",
-            "Right to Object: Objection to processing of personal data",
+            "Right of Access: All data is on-device and directly viewable through the app",
+            "Right to Erasure: Data can be freely deleted within the app",
+            "Data Portability: Export function allows exporting to the photo library",
+            "Restriction of Processing: Data is processed only on-device with no external transmission",
           ],
         },
         ccpa: {
-          title: "8-3. California Users (CCPA)",
+          title: "California, USA (CCPA)",
           items: [
-            "Request disclosure of categories and purposes of personal information collected",
-            "Request deletion of personal information",
-            "Opt-out of sale of personal information (we do not sell personal information)",
+            "Right to Know: Collected data is limited to on-device data described in this policy",
+            "Right to Delete: Complete deletion via in-app function or uninstallation",
+            "Right to Opt-Out: No data is sold or shared",
+            "Non-Discrimination: No service changes due to exercising rights",
           ],
         },
         howTo: {
           title: "How to Exercise Your Rights",
-          content: "Since the App stores all data only on the device, you can delete all data by uninstalling the app. Individual photos, videos, and folders can be deleted using the in-app delete function. For other rights, please contact us using the information below.",
+          content: "Since all data is stored on the device, most rights can be exercised directly through in-app operations. If you need additional support, please contact us at the address below.",
         },
       },
       cookies: {
-        title: "9. Cookies & Tracking Technologies",
-        content: "The App does not operate in a web browser, so cookies are not used. Additionally, no tracking technologies (advertising IDs, analytics SDKs, etc.) are used. Since we do not conduct advertising-purpose tracking required by Apple's App Tracking Transparency (ATT) framework, the ATT prompt is not displayed.",
+        title: "10. Cookies & Tracking",
+        content: "The App does not use cookies, web beacons, pixel tags, or any other tracking technologies. It does not access advertising identifiers (IDFA/GAID).",
       },
       changes: {
-        title: "10. Changes to This Privacy Policy",
-        content: "We may update this Privacy Policy from time to time. If significant changes occur, we will notify you by updating the \"Last Updated\" date at the top of this page.",
-        consent: "If you continue to use the App after changes are made, you are deemed to have agreed to the updated Privacy Policy.",
+        title: "11. Changes to This Privacy Policy",
+        content: "This Privacy Policy may be updated due to changes in laws or the addition of new app features. Significant changes will be announced through the app or App Store update notes.",
+        consent: "Continued use of the App after changes constitutes acceptance of the updated Privacy Policy.",
       },
       contact: {
-        title: "11. Contact Us",
-        content: "For questions about this Privacy Policy or to exercise your rights, please contact us at:",
+        title: "12. Contact Us",
+        content: "If you have any questions about this Privacy Policy, please contact us at the email address below.",
         email: "Email",
-        responseTime: "We will respond to your inquiry within 30 days in principle.",
+        responseTime: "* We typically respond within 48 hours.",
       },
       appStoreLabel: {
-        title: "App Store Privacy Nutrition Label",
-        description: "Disclosure information for the App Store's App Privacy section.",
-        tableHeaders: ["Data Type", "Collected", "Tracked", "Purpose"],
+        title: "App Store Privacy Label",
+        description: "Information corresponding to the Apple App Store privacy nutrition label.",
+        tableHeaders: ["Data Type", "Collected", "Used for Tracking", "Linked to User"],
         rows: [
-          ["Photos & Videos", "Yes (on-device only)", "No", "App Functionality (photo/video storage & management)"],
-          ["Identifiers (Device ID)", "No", "No", "—"],
-          ["Usage Data", "No", "No", "—"],
-          ["Location", "No", "No", "—"],
-          ["Contact Info", "No", "No", "—"],
-          ["Name, Email, etc.", "No", "No", "—"],
+          ["Photos or Videos", "On-device only", "No", "No"],
+          ["Other User Content", "On-device only", "No", "No"],
         ],
-        trackingNote: "\"Tracked\" = data used for third-party advertising or analytics purposes. The App does not send any data externally and does not track for advertising purposes.",
-        languageNote: "The Japanese version of this Privacy Policy is the authoritative text.",
+        trackingNote: "* The App does not request tracking permission under App Tracking Transparency.",
+        languageNote: "Supported Languages: Japanese, English, Korean, Traditional Chinese",
       },
     },
   },
@@ -518,15 +542,15 @@ const TRANSLATIONS: Record<Language, {
     backToSupport: "지원 페이지로 돌아가기",
     tableOfContents: "목차",
     userRightsIntro: {
-      japan: "개인정보보호법에 따라 다음과 같은 권리를 가집니다:",
+      japan: "개인정보 보호법에 따라 다음과 같은 권리를 가집니다:",
       gdpr: "GDPR에 따라 다음과 같은 권리를 가집니다:",
       ccpa: "CCPA에 따라 다음과 같은 권리를 가집니다:",
     },
     sections: {
       intro: {
         title: "1. 소개",
-        content: "PixVault(이하 \"본 앱\")는 사진과 동영상을 기기 내에 안전하게 저장하고 관리하기 위한 앱입니다. 본 개인정보 처리방침은 본 앱을 이용할 때의 데이터 처리에 대해 설명합니다.",
-        consent: "본 앱을 이용함으로써 본 개인정보 처리방침에 기재된 내용에 동의한 것으로 간주됩니다. 동의하지 않으시는 경우 본 앱의 이용을 삼가해 주세요.",
+        content: "KeyAlbum(이하 \"본 앱\")은 사진과 동영상을 기기 내에 안전하게 저장하고 관리하기 위한 앱입니다. 본 앱은 PIN 및 생체 인증(Face ID/지문 인증) 잠금, 사진 편집기, 앱 내 카메라 기능을 제공합니다. 본 개인정보 처리방침은 본 앱을 이용할 때의 데이터 처리에 대해 설명합니다.",
+        consent: "본 앱을 이용함으로써 본 개인정보 처리방침에 설명된 내용에 동의한 것으로 간주됩니다. 동의하지 않으시는 경우 본 앱의 이용을 삼가해 주세요.",
       },
       dataCollection: {
         title: "2. 수집하는 정보",
@@ -535,27 +559,30 @@ const TRANSLATIONS: Record<Language, {
           photos: {
             title: "(a) 사진·동영상 데이터",
             items: [
-              "사용자가 가져오거나 촬영한 사진·동영상",
-              "자동 생성되는 썸네일 이미지",
-              "사진 메타데이터(너비·높이·파일 크기·생성 날짜)",
-              "동영상 메타데이터(재생 시간·파일 크기)",
+              "사용자가 가져오기, 촬영 또는 편집한 사진·동영상",
+              "자동 생성되는 썸네일 이미지(300×300픽셀)",
+              "사진 메타데이터(너비, 높이, 파일 크기, 생성일)",
+              "동영상 메타데이터(재생 시간, 파일 크기)",
+              "사진 편집기로 생성된 편집 이미지(텍스트, 스티커, 필터 등의 적용 결과)",
               "모든 데이터는 앱 전용 폴더에 저장되며 외부로 전송되지 않습니다",
             ],
           },
           folders: {
             title: "(b) 폴더 정보",
             items: [
-              "사용자가 생성한 폴더명·폴더 ID",
+              "사용자가 생성한 폴더명 및 폴더 ID",
               "폴더 커버 사진 설정",
+              "폴더 및 사진 정렬 순서 정보",
               "폴더 내 사진·동영상 관리 정보(metadata.json)",
             ],
           },
           settings: {
-            title: "(c) 앱 설정",
+            title: "(c) 앱 설정·인증 정보",
             items: [
               "테마 색상 설정",
-              "가져오기 시 원본 데이터 삭제 설정",
-              "PIN 잠금 설정(PIN은 SHA-256 해시로 저장)",
+              "가져오기 후 원본 삭제 설정",
+              "PIN 잠금 설정(PIN은 SHA-256으로 해시화되어 OS 보안 저장소에 저장)",
+              "생체 인증(Face ID/지문 인증) 활성화/비활성화 설정(생체 데이터 자체는 OS가 관리하며 앱에서 접근할 수 없습니다)",
             ],
           },
         },
@@ -563,138 +590,145 @@ const TRANSLATIONS: Record<Language, {
           title: "2-2. 수집하지 않는 정보",
           intro: "본 앱은 다음 정보를 일절 수집하지 않습니다:",
           items: [
-            "성명·이메일·주소 등 개인 식별 정보(계정 등록 불필요)",
+            "성명, 이메일 주소, 주소 등 개인 식별 정보(계정 등록 불필요)",
             "위치 정보",
             "연락처",
-            "건강·피트니스 데이터",
+            "건강 및 피트니스 데이터",
             "광고 목적의 추적 데이터",
-            "이용 현황 분석 데이터",
-            "인터넷을 통해 외부로 전송되는 데이터",
+            "사용 분석 데이터",
+            "생체 인증 원시 데이터(얼굴·지문 데이터 자체)",
           ],
         },
       },
+      permissions: {
+        title: "3. 앱이 사용하는 권한",
+        intro: "본 앱은 다음 기기 권한을 사용합니다. 모든 권한은 앱 기능 제공을 위해서만 사용되며 데이터의 외부 전송에는 사용되지 않습니다.",
+        items: [
+          { name: "사진 라이브러리", purpose: "사진·동영상 가져오기 및 내보내기, 가져오기 후 원본 삭제" },
+          { name: "카메라", purpose: "앱 내 사진·동영상 촬영" },
+          { name: "마이크", purpose: "동영상 촬영 시 음성 녹음" },
+          { name: "Face ID / 지문 인증", purpose: "앱 잠금 해제(생체 데이터는 OS가 관리하며 앱에 저장되지 않습니다)" },
+        ],
+        note: "모든 권한은 OS 권한 대화 상자를 통해 사용자에게 확인됩니다. 권한을 허용하지 않아도 해당 기능 외의 앱 기능은 정상적으로 이용할 수 있습니다.",
+      },
       purpose: {
-        title: "3. 정보의 이용 목적",
+        title: "4. 정보의 이용 목적",
         intro: "기기 내에 저장되는 데이터는 다음 목적으로만 사용됩니다:",
-        tableHeaders: ["정보 유형", "이용 목적"],
+        tableHeaders: ["데이터", "이용 목적"],
         rows: [
-          ["사진·동영상 데이터", "앱 내 열람·편집·관리"],
-          ["썸네일 이미지", "갤러리 표시 고속화"],
-          ["메타데이터", "파일 정보 표시·정렬 기능"],
-          ["폴더 정보", "사진·동영상 정리·분류"],
-          ["테마 설정", "UI 커스터마이즈 표시"],
-          ["PIN 해시", "앱 잠금 인증"],
+          ["사진·동영상", "앱 내 안전한 저장, 표시, 편집 및 내보내기"],
+          ["썸네일", "목록 화면에서의 빠른 표시"],
+          ["메타데이터", "파일 정보 표시, 압축률 계산, 저장 공간 사용량 표시"],
+          ["폴더 정보", "사진·동영상 정리, 정렬 및 커버 사진 표시"],
+          ["PIN / 해시", "앱 잠금을 통한 개인정보 보호"],
+          ["생체 인증 설정", "Face ID·지문 인증 잠금 해제 활성화/비활성화 관리"],
+          ["테마 설정", "사용자 취향에 맞춘 UI 표시"],
+          ["원본 삭제 설정", "가져오기 후 카메라 롤에서 원본 자동 삭제 여부 관리"],
         ],
       },
       thirdParty: {
-        title: "4. 제3자 서비스에 대한 정보 제공",
-        content: "본 앱은 어떠한 제3자 서비스(광고 네트워크, 분석, 클라우드 스토리지 등)도 이용하지 않습니다. 사용자의 데이터는 일절 외부로 전송되지 않습니다.",
-        important: "중요: 본 앱은 인터넷 연결이 필요하지 않으며 완전히 오프라인으로 작동합니다. 사용자의 개인정보를 판매·공유·제공하는 일은 일절 없습니다.",
+        title: "5. 제3자 서비스에 대한 정보 제공",
+        content: "본 앱은 네트워크 통신을 일절 하지 않습니다. 사진, 동영상, 설정 정보를 포함한 모든 데이터는 기기 내에만 저장되며 외부 서버, 클라우드 서비스, 광고 네트워크, 분석 서비스에 전송되지 않습니다.",
+        important: "중요: 본 앱은 클라우드 동기화 및 백업 기능을 제공하지 않습니다. 앱을 삭제하면 모든 데이터가 손실됩니다.",
       },
       retention: {
-        title: "5. 데이터 보관 및 보존 기간",
+        title: "6. 데이터 보관 및 보존 기간",
         local: {
-          title: "기기 내(로컬 스토리지)",
-          intro: "모든 데이터는 사용자 기기 내 앱 전용 디렉토리에만 저장됩니다:",
+          title: "6-1. 로컬 데이터",
+          intro: "모든 데이터는 사용자가 명시적으로 삭제할 때까지 기기 내에 저장됩니다.",
           items: [
-            "사진·동영상 파일(앱 전용 폴더)",
-            "썸네일 이미지",
-            "폴더·사진 메타데이터(metadata.json)",
-            "앱 설정(AsyncStorage)",
-            "PIN 해시(Secure Store / OS 수준의 안전한 스토리지)",
+            "사진·동영상: 사용자가 삭제 작업을 수행할 때까지 보존",
+            "폴더 정보: 폴더 삭제 시 관련 데이터와 함께 삭제",
+            "PIN 정보: PIN 잠금 비활성화 시 보안 저장소에서 삭제",
+            "앱 설정: 앱 삭제 시 모두 제거",
           ],
-          deletion: "이러한 데이터는 앱을 삭제하면 완전히 삭제됩니다. 클라우드 동기화가 이루어지지 않으므로 재설치 시 데이터는 복원되지 않습니다.",
+          deletion: "※ 앱을 제거하면 모든 로컬 데이터가 완전히 삭제됩니다.",
         },
         server: {
-          title: "서버",
-          content: "본 앱은 자체 서버를 보유하지 않으며 사용자 데이터를 서버에 전송하거나 저장하지 않습니다. 모든 데이터 처리는 기기 내에서 완료됩니다.",
+          title: "6-2. 서버 측 데이터",
+          content: "본 앱은 서버를 사용하지 않으므로 서버 측에 저장되는 데이터는 없습니다.",
         },
       },
       security: {
-        title: "6. 데이터 보안",
+        title: "7. 데이터 보안",
         items: [
-          "앱 전용 디렉토리: 사진·동영상은 다른 앱에서 접근할 수 없는 앱 전용 폴더에 저장됩니다",
-          "PIN 잠금: 선택적 4자리 PIN으로 앱 잠금 기능을 제공합니다",
-          "PIN 해시화: PIN은 SHA-256으로 솔트 해시화되어 Secure Store(OS 수준의 안전한 스토리지)에 저장됩니다",
-          "오프라인 설계: 네트워크 통신을 일절 수행하지 않으므로 통신을 통한 데이터 유출 위험이 없습니다",
-          "로컬 완결: 모든 데이터 처리(압축·편집·썸네일 생성 등)는 기기 내에서 수행됩니다",
+          "모든 데이터는 기기 내 앱 전용 샌드박스에 저장(다른 앱에서 접근 불가)",
+          "PIN은 SHA-256으로 해시화되어 OS 보안 저장소(Keychain / Keystore)에 저장",
+          "생체 인증(Face ID/지문 인증)은 OS의 Secure Enclave에서 처리되며 앱에 생체 데이터가 저장되지 않습니다",
+          "네트워크 통신을 하지 않으므로 통신 경로를 통한 유출 위험 없음",
+          "사진은 JPEG 형식으로 저장(추가 암호화는 적용되지 않음)",
         ],
-        disclaimer: "다만, 기기의 분실·도난, 탈옥 등으로 기기 수준의 보안이 침해된 경우 앱 내 데이터의 안전성을 보장할 수 없습니다.",
+        disclaimer: "※ 기기 자체의 보안(비밀번호, 암호화 등)은 사용자의 책임하에 관리해 주세요.",
       },
       children: {
-        title: "7. 아동의 개인정보(COPPA 대응)",
-        content: "본 앱은 13세 미만의 아동을 대상으로 하지 않으며, 의도적으로 13세 미만의 아동으로부터 개인정보를 수집하지 않습니다. 본 앱은 데이터를 일절 외부로 전송하지 않으므로 연령에 관계없이 개인정보가 보호됩니다.",
-        action: "13세 미만의 아동이 본 앱을 이용하는 것에 대한 우려가 있는 보호자분은 아래 연락처로 문의해 주세요.",
+        title: "8. 아동의 개인정보",
+        content: "본 앱은 특정 연령대를 대상으로 하지 않으며 의도적으로 아동의 개인정보를 수집하지 않습니다. 본 앱은 계정 등록이 필요 없으며 개인정보 입력을 요청하지 않습니다.",
+        action: "아동의 본 앱 사용에 대해 우려가 있으신 경우 아래 연락처로 문의해 주세요.",
       },
       userRights: {
-        title: "8. 사용자의 권리",
+        title: "9. 사용자의 권리",
         japan: {
-          title: "8-1. 일본 내 사용자",
+          title: "일본(개인정보 보호법)",
           items: [
-            "보유한 개인정보의 공개 청구",
-            "내용의 정정·추가·삭제 청구",
-            "이용 정지·소거 청구",
+            "데이터 확인: 모든 데이터는 기기 내에 저장되어 있어 앱에서 언제든지 확인 가능",
+            "데이터 삭제: 앱 내 삭제 기능 또는 앱 제거로 완전 삭제",
+            "데이터 내보내기: 사진·동영상을 기기의 사진 라이브러리로 내보내기 가능",
           ],
         },
         gdpr: {
-          title: "8-2. EEA·UK 사용자(GDPR)",
+          title: "EU(GDPR)",
           items: [
-            "접근권: 보유한 개인 데이터에 대한 접근",
-            "정정권: 부정확한 개인 데이터의 정정",
-            "삭제권(잊혀질 권리): 개인 데이터의 삭제",
-            "처리 제한권: 개인 데이터 처리의 제한",
-            "데이터 이동권: 데이터의 수령 및 이전",
-            "이의 제기권: 개인 데이터 처리에 대한 이의",
+            "접근권: 모든 데이터는 기기 내에 있으며 앱에서 직접 확인 가능",
+            "삭제권: 앱 내에서 자유롭게 삭제 가능",
+            "데이터 이동성: 내보내기 기능으로 사진 라이브러리에 내보내기 가능",
+            "처리 제한: 데이터는 기기 내에서만 처리되며 외부 전송 없음",
           ],
         },
         ccpa: {
-          title: "8-3. 캘리포니아주 사용자(CCPA)",
+          title: "미국 캘리포니아주(CCPA)",
           items: [
-            "수집하는 개인정보의 카테고리와 목적의 공개 청구",
-            "개인정보의 삭제 청구",
-            "개인정보 판매의 옵트아웃(당사는 개인정보를 판매하지 않습니다)",
+            "알 권리: 수집 데이터는 본 방침에 기재된 기기 내 데이터뿐",
+            "삭제권: 앱 내 또는 제거로 완전 삭제",
+            "옵트아웃 권리: 데이터의 판매나 공유 없음",
+            "차별 금지: 권리 행사에 따른 서비스 변경 없음",
           ],
         },
         howTo: {
           title: "권리 행사 방법",
-          content: "본 앱은 모든 데이터를 기기 내에만 저장하므로 앱 삭제로 전체 데이터를 삭제할 수 있습니다. 개별 사진·동영상·폴더는 앱 내 삭제 기능으로 삭제할 수 있습니다. 기타 권리 행사에 대해서는 아래 연락처로 문의해 주세요.",
+          content: "모든 데이터는 기기 내에 저장되어 있으므로 대부분의 권리는 앱 내 조작으로 직접 행사할 수 있습니다. 추가 지원이 필요한 경우 아래 연락처로 문의해 주세요.",
         },
       },
       cookies: {
-        title: "9. 쿠키 및 추적 기술",
-        content: "본 앱은 웹 브라우저에서 작동하는 것이 아니므로 쿠키를 사용하지 않습니다. 또한 어떠한 추적 기술(광고 ID, 분석 SDK 등)도 사용하지 않습니다. Apple의 App Tracking Transparency(ATT) 프레임워크가 요구하는 광고 목적의 추적을 실시하지 않으므로 ATT 프롬프트는 표시되지 않습니다.",
+        title: "10. 쿠키·추적",
+        content: "본 앱은 쿠키, 웹 비콘, 픽셀 태그 또는 기타 추적 기술을 일절 사용하지 않습니다. 광고 식별자(IDFA/GAID) 취득도 하지 않습니다.",
       },
       changes: {
-        title: "10. 개인정보 처리방침의 변경",
-        content: "당사는 본 개인정보 처리방침을 수시로 업데이트할 수 있습니다. 중요한 변경이 발생한 경우 본 페이지 상단의 \"최종 업데이트\" 날짜를 변경하여 알려드립니다.",
-        consent: "변경 후에도 본 앱을 계속 이용하시는 경우 업데이트된 개인정보 처리방침에 동의한 것으로 간주됩니다.",
+        title: "11. 개인정보 처리방침의 변경",
+        content: "본 개인정보 처리방침은 법령 변경이나 앱 기능 추가에 따라 업데이트될 수 있습니다. 중요한 변경이 있는 경우 앱 내 또는 App Store 업데이트 정보에서 안내합니다.",
+        consent: "변경 후에도 본 앱을 계속 이용하시면 변경된 개인정보 처리방침에 동의한 것으로 간주됩니다.",
       },
       contact: {
-        title: "11. 문의하기",
-        content: "본 개인정보 처리방침에 관한 질문이나 권리 행사 신청은 아래로 문의해 주세요:",
+        title: "12. 문의하기",
+        content: "본 개인정보 처리방침에 관한 질문이나 문의는 아래 이메일 주소로 연락해 주세요.",
         email: "이메일",
-        responseTime: "문의로부터 원칙적으로 30일 이내에 답변드리겠습니다.",
+        responseTime: "※ 통상 48시간 이내에 답변드립니다.",
       },
       appStoreLabel: {
-        title: "App Store Privacy Nutrition Label 대응표",
-        description: "App Store의 App Privacy 섹션을 위한 공개 정보입니다.",
-        tableHeaders: ["데이터 유형", "수집 여부", "추적 여부", "이용 목적"],
+        title: "App Store 개인정보 보호 표시",
+        description: "Apple App Store 개인정보 보호 라벨에 해당하는 정보입니다.",
+        tableHeaders: ["데이터 유형", "수집", "추적에 사용", "사용자에 연결"],
         rows: [
-          ["사진·동영상", "○(기기 내만)", "×", "App Functionality(사진·동영상 저장·관리)"],
-          ["식별자(디바이스 ID)", "×", "×", "—"],
-          ["이용 현황 데이터", "×", "×", "—"],
-          ["위치 정보", "×", "×", "—"],
-          ["연락처 정보", "×", "×", "—"],
-          ["성명·이메일 등", "×", "×", "—"],
+          ["사진 또는 동영상", "기기 내만", "아니오", "아니오"],
+          ["기타 사용자 콘텐츠", "기기 내만", "아니오", "아니오"],
         ],
-        trackingNote: "\"추적\" = 제3자의 광고·분석 목적으로의 데이터 이용. 본 앱은 어떠한 데이터도 외부로 전송하지 않으며 광고 목적으로 추적하지 않습니다.",
-        languageNote: "본 개인정보 처리방침은 일본어를 정본으로 합니다.",
+        trackingNote: "※ 본 앱은 App Tracking Transparency에 따른 추적 허가를 요청하지 않습니다.",
+        languageNote: "지원 언어: 일본어, 영어, 한국어, 번체 중국어",
       },
     },
   },
   "zh-TW": {
     title: "隱私權政策",
-    lastUpdated: "最後更新日期",
+    lastUpdated: "最後更新",
     lastUpdatedDate: LAST_UPDATED_ZH_TW,
     backToSupport: "返回支援頁面",
     tableOfContents: "目錄",
@@ -705,352 +739,181 @@ const TRANSLATIONS: Record<Language, {
     },
     sections: {
       intro: {
-        title: "1. 前言",
-        content: "PixVault（以下簡稱「本應用程式」）是一款用於在裝置上安全儲存和管理照片與影片的應用程式。本隱私權政策說明您使用本應用程式時的資料處理方式。",
-        consent: "使用本應用程式即表示您同意本隱私權政策中所述的內容。如果您不同意，請停止使用本應用程式。",
+        title: "1. 簡介",
+        content: "KeyAlbum（以下簡稱「本應用程式」）是一款用於在裝置上安全儲存和管理照片與影片的應用程式。本應用程式提供 PIN 碼和生物辨識（Face ID/指紋）鎖定、照片編輯器及應用程式內相機功能。本隱私權政策說明您使用本應用程式時的資料處理方式。",
+        consent: "使用本應用程式即表示您同意本隱私權政策中所述的條款。如果您不同意，請停止使用本應用程式。",
       },
       dataCollection: {
-        title: "2. 我們收集的資訊",
+        title: "2. 收集的資訊",
         localData: {
           title: "2-1. 僅儲存在裝置上的資料",
           photos: {
             title: "(a) 照片與影片資料",
             items: [
-              "使用者匯入或拍攝的照片與影片",
-              "自動生成的縮圖",
-              "照片中繼資料（寬度、高度、檔案大小、建立日期）",
-              "影片中繼資料（播放時長、檔案大小）",
-              "所有資料均儲存在應用程式專用資料夾中，不會傳送到外部",
+              "使用者匯入、拍攝或編輯的照片與影片",
+              "自動生成的縮圖（300×300 像素）",
+              "照片的中繼資料（寬度、高度、檔案大小、建立日期）",
+              "影片的中繼資料（播放時間、檔案大小）",
+              "使用照片編輯器建立的已編輯影像（文字、貼紙和濾鏡等應用結果）",
+              "所有資料儲存在應用程式專用資料夾中，不會傳輸到外部",
             ],
           },
           folders: {
             title: "(b) 資料夾資訊",
             items: [
-              "使用者建立的資料夾名稱和資料夾 ID",
+              "使用者建立的資料夾名稱和 ID",
               "資料夾封面照片設定",
-              "資料夾內照片與影片的管理資訊（metadata.json）",
+              "資料夾和照片排序順序資訊",
+              "資料夾內照片和影片的管理資訊（metadata.json）",
             ],
           },
           settings: {
-            title: "(c) 應用程式設定",
+            title: "(c) 應用程式設定與驗證資訊",
             items: [
-              "主題顏色設定",
-              "匯入時刪除原始資料設定",
-              "PIN 鎖定設定（PIN 以 SHA-256 雜湊儲存）",
+              "主題色彩設定",
+              "匯入後刪除原始資料設定",
+              "PIN 碼鎖定設定（PIN 碼經 SHA-256 雜湊處理後儲存在 OS 安全儲存區）",
+              "生物辨識（Face ID/指紋）啟用/停用設定（生物辨識資料本身由 OS 管理，應用程式無法存取）",
             ],
           },
         },
         notCollected: {
-          title: "2-2. 我們不收集的資訊",
+          title: "2-2. 不收集的資訊",
           intro: "本應用程式不收集以下任何資訊：",
           items: [
-            "姓名、電子郵件、地址等個人識別資訊（無需帳號註冊）",
+            "姓名、電子郵件地址、地址等個人識別資訊（無需帳號註冊）",
             "位置資訊",
             "聯絡人",
-            "健康與健身資料",
-            "廣告目的的追蹤資料",
+            "健康或健身資料",
+            "用於廣告目的的追蹤資料",
             "使用情況分析資料",
-            "透過網際網路傳送到外部的任何資料",
+            "生物辨識原始資料（臉部或指紋資料本身）",
           ],
         },
       },
+      permissions: {
+        title: "3. 應用程式使用的權限",
+        intro: "本應用程式使用以下裝置權限。所有權限僅用於提供應用程式功能，不會用於向外部傳輸資料。",
+        items: [
+          { name: "照片圖庫", purpose: "匯入和匯出照片/影片，匯入後刪除原始資料" },
+          { name: "相機", purpose: "在應用程式內拍攝照片和影片" },
+          { name: "麥克風", purpose: "拍攝影片時錄製音訊" },
+          { name: "Face ID / 指紋", purpose: "應用程式解鎖（生物辨識資料由 OS 管理，不會儲存在應用程式中）" },
+        ],
+        note: "所有權限都會透過 OS 權限對話框向使用者確認。如果您選擇不授予權限，其他應用程式功能仍可正常使用。",
+      },
       purpose: {
-        title: "3. 資料使用目的",
+        title: "4. 資訊使用目的",
         intro: "儲存在裝置上的資料僅用於以下目的：",
-        tableHeaders: ["資料類型", "使用目的"],
+        tableHeaders: ["資料", "使用目的"],
         rows: [
-          ["照片與影片資料", "在應用程式內瀏覽、編輯和管理"],
-          ["縮圖", "加速相簿顯示"],
-          ["中繼資料", "檔案資訊顯示和排序功能"],
-          ["資料夾資訊", "照片與影片的整理分類"],
-          ["主題設定", "UI 自訂顯示"],
-          ["PIN 雜湊", "應用程式鎖定驗證"],
+          ["照片與影片", "在應用程式內安全儲存、顯示、編輯和匯出"],
+          ["縮圖", "在列表畫面中快速顯示"],
+          ["中繼資料", "顯示檔案資訊、計算壓縮率、顯示儲存空間使用量"],
+          ["資料夾資訊", "整理、排序照片/影片和顯示封面照片"],
+          ["PIN 碼 / 雜湊", "透過應用程式鎖定保護隱私"],
+          ["生物辨識設定", "管理 Face ID/指紋解鎖啟用/停用"],
+          ["主題設定", "根據使用者偏好自訂 UI 外觀"],
+          ["刪除原始資料設定", "管理匯入後是否自動從相簿刪除原始照片"],
         ],
       },
       thirdParty: {
-        title: "4. 向第三方服務提供資訊",
-        content: "本應用程式不使用任何第三方服務（廣告網路、分析、雲端儲存等）。使用者的資料不會傳送到外部。",
-        important: "重要：本應用程式不需要網際網路連線，完全離線運作。我們絕不會出售、分享或向任何第三方提供使用者的個人資訊。",
+        title: "5. 向第三方服務提供資訊",
+        content: "本應用程式不進行任何網路通訊。包括照片、影片和設定資訊在內的所有資料僅儲存在裝置上，不會傳輸至外部伺服器、雲端服務、廣告網路或分析服務。",
+        important: "重要：本應用程式不提供雲端同步或備份功能。刪除應用程式將導致所有資料遺失。",
       },
       retention: {
-        title: "5. 資料儲存與保留期間",
+        title: "6. 資料儲存與保留期間",
         local: {
-          title: "裝置內（本機儲存）",
-          intro: "所有資料僅儲存在使用者裝置上的應用程式專用目錄中：",
+          title: "6-1. 本機資料",
+          intro: "所有資料儲存在裝置上，直到使用者明確刪除為止。",
           items: [
-            "照片與影片檔案（應用程式專用資料夾）",
-            "縮圖",
-            "資料夾與照片中繼資料（metadata.json）",
-            "應用程式設定（AsyncStorage）",
-            "PIN 雜湊（Secure Store / 作業系統層級的安全儲存）",
+            "照片與影片：保留至使用者執行刪除操作",
+            "資料夾資訊：刪除資料夾時連同相關資料一併刪除",
+            "PIN 碼資訊：停用 PIN 碼鎖定時從安全儲存區刪除",
+            "應用程式設定：刪除應用程式時全部清除",
           ],
-          deletion: "解除安裝應用程式後，這些資料將被完全刪除。由於不進行雲端同步，重新安裝時資料無法恢復。",
+          deletion: "※ 解除安裝應用程式將永久刪除所有本機資料。",
         },
         server: {
-          title: "伺服器",
-          content: "本應用程式不擁有自己的伺服器，不會將使用者資料傳送或儲存到任何伺服器。所有資料處理均在裝置上完成。",
+          title: "6-2. 伺服器端資料",
+          content: "本應用程式不使用任何伺服器，因此沒有資料儲存在伺服器端。",
         },
       },
       security: {
-        title: "6. 資料安全",
+        title: "7. 資料安全",
         items: [
-          "應用程式專用目錄：照片與影片儲存在其他應用程式無法存取的專用資料夾中",
-          "PIN 鎖定：提供可選的 4 位數 PIN 應用程式鎖定功能",
-          "PIN 雜湊化：PIN 使用 SHA-256 加鹽雜湊後儲存在 Secure Store（作業系統層級的安全儲存）中",
-          "離線設計：不進行任何網路通訊，消除了透過傳輸洩露資料的風險",
-          "本機完成：所有資料處理（壓縮、編輯、縮圖生成等）均在裝置上進行",
+          "所有資料儲存在裝置上的應用程式專用沙盒中（其他應用程式無法存取）",
+          "PIN 碼經 SHA-256 雜湊處理後儲存在 OS 安全儲存區（Keychain / Keystore）",
+          "生物辨識（Face ID/指紋）由 OS 的 Secure Enclave 處理，應用程式不儲存生物辨識資料",
+          "不進行網路通訊，因此不存在通訊途徑的資料洩漏風險",
+          "照片以 JPEG 格式儲存（未套用額外加密）",
         ],
-        disclaimer: "但是，如果裝置遺失、被盜、越獄等導致裝置層級的安全性受到損害，我們無法保證應用程式內資料的安全性。",
+        disclaimer: "※ 裝置本身的安全性（密碼、加密等）由使用者自行管理。",
       },
       children: {
-        title: "7. 兒童隱私（COPPA 合規）",
-        content: "本應用程式不以 13 歲以下的兒童為對象，也不會故意收集 13 歲以下兒童的個人資訊。由於本應用程式不會將任何資料傳送到外部，因此無論年齡如何，隱私都受到保護。",
-        action: "如果您是家長或監護人，對 13 歲以下的兒童使用本應用程式有任何疑慮，請使用以下聯繫方式與我們聯繫。",
+        title: "8. 兒童隱私",
+        content: "本應用程式不針對特定年齡層，也不會有意收集兒童的個人資訊。本應用程式無需帳號註冊，也不要求輸入任何個人資訊。",
+        action: "如果您對兒童使用本應用程式有任何疑慮，請透過下方聯絡方式與我們聯繫。",
       },
       userRights: {
-        title: "8. 使用者權利",
+        title: "9. 使用者權利",
         japan: {
-          title: "8-1. 日本境內的使用者",
+          title: "日本（個人資訊保護法）",
           items: [
-            "要求公開持有的個人資訊",
-            "要求更正、補充或刪除內容",
-            "要求停止使用或消除",
+            "資料確認：所有資料儲存在裝置上，可隨時在應用程式中確認",
+            "資料刪除：透過應用程式內的刪除功能或解除安裝完全刪除",
+            "資料匯出：照片和影片可匯出至裝置的照片圖庫",
           ],
         },
         gdpr: {
-          title: "8-2. EEA 和英國使用者（GDPR）",
+          title: "歐盟（GDPR）",
           items: [
-            "存取權：存取持有的個人資料",
-            "更正權：更正不準確的個人資料",
-            "刪除權（被遺忘權）：刪除個人資料",
-            "處理限制權：限制個人資料處理",
-            "資料可攜權：接收和轉移資料",
-            "反對權：反對處理個人資料",
+            "存取權：所有資料在裝置上，可透過應用程式直接確認",
+            "刪除權：可在應用程式中自由刪除",
+            "資料可攜性：透過匯出功能匯出至照片圖庫",
+            "處理限制：資料僅在裝置上處理，不會外部傳輸",
           ],
         },
         ccpa: {
-          title: "8-3. 加州使用者（CCPA）",
+          title: "美國加州（CCPA）",
           items: [
-            "要求公開收集的個人資訊類別和目的",
-            "要求刪除個人資訊",
-            "選擇退出個人資訊出售（我們不出售個人資訊）",
+            "知情權：收集的資料僅為本政策中所述的裝置上資料",
+            "刪除權：透過應用程式內功能或解除安裝完全刪除",
+            "退出選擇權：不會出售或分享任何資料",
+            "不歧視：行使權利不會導致服務變更",
           ],
         },
         howTo: {
-          title: "行使權利的方式",
-          content: "由於本應用程式僅在裝置上儲存所有資料，您可以透過解除安裝應用程式來刪除所有資料。個別的照片、影片和資料夾可以使用應用程式內的刪除功能刪除。有關其他權利的行使，請使用以下聯繫方式與我們聯繫。",
+          title: "權利行使方式",
+          content: "由於所有資料儲存在裝置上，大部分權利可透過應用程式內操作直接行使。如需額外支援，請透過下方聯絡方式與我們聯繫。",
         },
       },
       cookies: {
-        title: "9. Cookie 和追蹤技術",
-        content: "本應用程式不在網頁瀏覽器上運作，因此不使用 Cookie。此外，也不使用任何追蹤技術（廣告 ID、分析 SDK 等）。由於我們不進行 Apple App Tracking Transparency（ATT）框架要求的廣告目的追蹤，因此不會顯示 ATT 提示。",
+        title: "10. Cookie 與追蹤",
+        content: "本應用程式不使用 Cookie、網路信標、像素標籤或任何其他追蹤技術。也不會取得廣告識別碼（IDFA/GAID）。",
       },
       changes: {
-        title: "10. 隱私權政策的變更",
-        content: "我們可能會不時更新本隱私權政策。如果發生重大變更，我們將透過更新本頁面頂部的「最後更新日期」來通知您。",
-        consent: "如果您在變更後繼續使用本應用程式，即表示您同意更新後的隱私權政策。",
+        title: "11. 隱私權政策的變更",
+        content: "本隱私權政策可能因法規變更或應用程式功能新增而更新。如有重大變更，將透過應用程式或 App Store 更新資訊通知。",
+        consent: "變更後繼續使用本應用程式即視為同意更新後的隱私權政策。",
       },
       contact: {
-        title: "11. 聯繫我們",
-        content: "如果您對本隱私權政策有任何疑問或需要行使您的權利，請透過以下方式聯繫我們：",
+        title: "12. 聯繫我們",
+        content: "如對本隱私權政策有任何疑問，請透過以下電子郵件地址與我們聯繫。",
         email: "電子郵件",
-        responseTime: "我們原則上會在收到諮詢後 30 天內回覆。",
+        responseTime: "※ 我們通常會在 48 小時內回覆。",
       },
       appStoreLabel: {
-        title: "App Store 隱私營養標籤對照表",
-        description: "App Store App Privacy 區段的公開資訊。",
-        tableHeaders: ["資料類型", "是否收集", "是否追蹤", "使用目的"],
+        title: "App Store 隱私權標示",
+        description: "對應 Apple App Store 隱私權標籤的資訊。",
+        tableHeaders: ["資料類型", "收集", "用於追蹤", "與使用者關聯"],
         rows: [
-          ["照片與影片", "○（僅限裝置內）", "×", "App Functionality（照片與影片的儲存與管理）"],
-          ["識別碼（裝置 ID）", "×", "×", "—"],
-          ["使用情況資料", "×", "×", "—"],
-          ["位置資訊", "×", "×", "—"],
-          ["聯絡資訊", "×", "×", "—"],
-          ["姓名、電子郵件等", "×", "×", "—"],
+          ["照片或影片", "僅限裝置上", "否", "否"],
+          ["其他使用者內容", "僅限裝置上", "否", "否"],
         ],
-        trackingNote: "「追蹤」= 將資料用於第三方廣告或分析目的。本應用程式不會將任何資料傳送到外部，也不會為廣告目的進行追蹤。",
-        languageNote: "本隱私權政策以日文版為正式文本。",
-      },
-    },
-  },
-  ar: {
-    title: "سياسة الخصوصية",
-    lastUpdated: "آخر تحديث",
-    lastUpdatedDate: LAST_UPDATED_AR,
-    backToSupport: "العودة إلى صفحة الدعم",
-    tableOfContents: "جدول المحتويات",
-    userRightsIntro: {
-      japan: "بموجب قانون حماية المعلومات الشخصية، لديك الحقوق التالية:",
-      gdpr: "بموجب اللائحة العامة لحماية البيانات، لديك الحقوق التالية:",
-      ccpa: "بموجب قانون خصوصية المستهلك في كاليفورنيا، لديك الحقوق التالية:",
-    },
-    sections: {
-      intro: {
-        title: "1. مقدمة",
-        content: "PixVault (المشار إليه فيما يلي بـ \"التطبيق\") هو تطبيق لتخزين وإدارة الصور ومقاطع الفيديو بشكل آمن على جهازك. توضح سياسة الخصوصية هذه كيفية التعامل مع البيانات عند استخدام التطبيق.",
-        consent: "باستخدام التطبيق، فإنك توافق على الشروط الموضحة في سياسة الخصوصية هذه. إذا كنت لا توافق، يرجى الامتناع عن استخدام التطبيق.",
-      },
-      dataCollection: {
-        title: "2. المعلومات التي نجمعها",
-        localData: {
-          title: "2-1. البيانات المخزنة على جهازك فقط",
-          photos: {
-            title: "(أ) بيانات الصور والفيديو",
-            items: [
-              "الصور ومقاطع الفيديو التي يستوردها أو يلتقطها المستخدم",
-              "الصور المصغرة المولدة تلقائيًا",
-              "بيانات وصفية للصور (العرض، الارتفاع، حجم الملف، تاريخ الإنشاء)",
-              "بيانات وصفية للفيديو (المدة، حجم الملف)",
-              "يتم تخزين جميع البيانات في مجلد خاص بالتطبيق ولا يتم إرسالها خارجيًا أبدًا",
-            ],
-          },
-          folders: {
-            title: "(ب) معلومات المجلدات",
-            items: [
-              "أسماء المجلدات ومعرفات المجلدات التي أنشأها المستخدم",
-              "إعدادات صورة غلاف المجلد",
-              "معلومات إدارة الصور/مقاطع الفيديو داخل المجلدات (metadata.json)",
-            ],
-          },
-          settings: {
-            title: "(ج) إعدادات التطبيق",
-            items: [
-              "إعدادات لون السمة",
-              "إعداد حذف البيانات الأصلية عند الاستيراد",
-              "إعدادات قفل PIN (يتم تخزين PIN كتجزئة SHA-256)",
-            ],
-          },
-        },
-        notCollected: {
-          title: "2-2. المعلومات التي لا نجمعها",
-          intro: "لا يجمع التطبيق أيًا من المعلومات التالية:",
-          items: [
-            "معلومات التعريف الشخصية مثل الاسم أو البريد الإلكتروني أو العنوان (لا حاجة لتسجيل حساب)",
-            "بيانات الموقع",
-            "جهات الاتصال",
-            "بيانات الصحة واللياقة البدنية",
-            "بيانات التتبع لأغراض إعلانية",
-            "بيانات تحليلات الاستخدام",
-            "أي بيانات يتم إرسالها خارجيًا عبر الإنترنت",
-          ],
-        },
-      },
-      purpose: {
-        title: "3. الغرض من استخدام البيانات",
-        intro: "تُستخدم البيانات المخزنة على الجهاز للأغراض التالية فقط:",
-        tableHeaders: ["نوع البيانات", "الغرض"],
-        rows: [
-          ["بيانات الصور والفيديو", "العرض والتحرير والإدارة داخل التطبيق"],
-          ["الصور المصغرة", "تسريع عرض المعرض"],
-          ["البيانات الوصفية", "عرض معلومات الملف والفرز"],
-          ["معلومات المجلدات", "تنظيم وتصنيف الصور/مقاطع الفيديو"],
-          ["إعدادات السمة", "تخصيص واجهة المستخدم"],
-          ["تجزئة PIN", "مصادقة قفل التطبيق"],
-        ],
-      },
-      thirdParty: {
-        title: "4. خدمات الطرف الثالث",
-        content: "لا يستخدم التطبيق أي خدمات طرف ثالث (شبكات إعلانية، تحليلات، تخزين سحابي، إلخ). لا يتم إرسال بيانات المستخدم خارجيًا أبدًا.",
-        important: "هام: لا يتطلب التطبيق اتصالاً بالإنترنت ويعمل بالكامل دون اتصال. لن نقوم أبدًا ببيع أو مشاركة أو تقديم المعلومات الشخصية للمستخدمين لأي طرف ثالث.",
-      },
-      retention: {
-        title: "5. تخزين البيانات والاحتفاظ بها",
-        local: {
-          title: "على الجهاز (التخزين المحلي)",
-          intro: "يتم تخزين جميع البيانات حصريًا في الدليل الخاص بالتطبيق على جهاز المستخدم:",
-          items: [
-            "ملفات الصور والفيديو (مجلد خاص بالتطبيق)",
-            "الصور المصغرة",
-            "بيانات وصفية للمجلدات والصور (metadata.json)",
-            "إعدادات التطبيق (AsyncStorage)",
-            "تجزئة PIN (Secure Store / تخزين آمن على مستوى نظام التشغيل)",
-          ],
-          deletion: "يتم حذف جميع البيانات نهائيًا عند إلغاء تثبيت التطبيق. نظرًا لعدم وجود مزامنة سحابية، لا يمكن استعادة البيانات عند إعادة التثبيت.",
-        },
-        server: {
-          title: "الخادم",
-          content: "لا يمتلك التطبيق خادمًا خاصًا به ولا يرسل أو يخزن بيانات المستخدم على أي خادم. تتم جميع عمليات معالجة البيانات على الجهاز.",
-        },
-      },
-      security: {
-        title: "6. أمان البيانات",
-        items: [
-          "دليل خاص بالتطبيق: يتم تخزين الصور ومقاطع الفيديو في مجلد خاص لا يمكن للتطبيقات الأخرى الوصول إليه",
-          "قفل PIN: تتوفر ميزة قفل اختيارية برمز PIN مكون من 4 أرقام",
-          "تجزئة PIN: يتم تجزئة رمز PIN باستخدام SHA-256 مع ملح وتخزينه في Secure Store (تخزين آمن على مستوى نظام التشغيل)",
-          "تصميم بدون اتصال: لا يتم إجراء أي اتصال شبكي، مما يلغي خطر تسرب البيانات عبر الإرسال",
-          "معالجة محلية: تتم جميع عمليات معالجة البيانات (الضغط، التحرير، إنشاء الصور المصغرة، إلخ) على الجهاز",
-        ],
-        disclaimer: "ومع ذلك، لا يمكننا ضمان أمان البيانات داخل التطبيق إذا تم اختراق أمان الجهاز من خلال الفقدان أو السرقة أو كسر الحماية وما إلى ذلك.",
-      },
-      children: {
-        title: "7. خصوصية الأطفال (COPPA)",
-        content: "التطبيق غير مخصص للأطفال دون سن 13 عامًا، ولا نقوم بجمع معلومات شخصية من الأطفال دون سن 13 عامًا عن قصد. نظرًا لأن التطبيق لا يرسل أي بيانات خارجيًا، فإن الخصوصية محمية بغض النظر عن العمر.",
-        action: "إذا كنت والدًا أو وصيًا ولديك مخاوف بشأن طفل دون سن 13 عامًا يستخدم التطبيق، يرجى التواصل معنا باستخدام المعلومات أدناه.",
-      },
-      userRights: {
-        title: "8. حقوق المستخدم",
-        japan: {
-          title: "8-1. المستخدمون في اليابان",
-          items: [
-            "طلب الكشف عن المعلومات الشخصية المحتفظ بها",
-            "طلب تصحيح أو إضافة أو حذف المعلومات",
-            "طلب تعليق أو محو الاستخدام",
-          ],
-        },
-        gdpr: {
-          title: "8-2. مستخدمو المنطقة الاقتصادية الأوروبية والمملكة المتحدة (GDPR)",
-          items: [
-            "حق الوصول: الوصول إلى البيانات الشخصية المحتفظ بها",
-            "حق التصحيح: تصحيح البيانات الشخصية غير الدقيقة",
-            "حق المحو (الحق في النسيان): حذف البيانات الشخصية",
-            "حق تقييد المعالجة: تقييد معالجة البيانات الشخصية",
-            "حق نقل البيانات: استلام ونقل البيانات",
-            "حق الاعتراض: الاعتراض على معالجة البيانات الشخصية",
-          ],
-        },
-        ccpa: {
-          title: "8-3. مستخدمو كاليفورنيا (CCPA)",
-          items: [
-            "طلب الكشف عن فئات وأغراض المعلومات الشخصية المجمعة",
-            "طلب حذف المعلومات الشخصية",
-            "إلغاء الاشتراك في بيع المعلومات الشخصية (نحن لا نبيع المعلومات الشخصية)",
-          ],
-        },
-        howTo: {
-          title: "كيفية ممارسة حقوقك",
-          content: "نظرًا لأن التطبيق يخزن جميع البيانات على الجهاز فقط، يمكنك حذف جميع البيانات عن طريق إلغاء تثبيت التطبيق. يمكن حذف الصور ومقاطع الفيديو والمجلدات الفردية باستخدام وظيفة الحذف داخل التطبيق. لممارسة حقوق أخرى، يرجى التواصل معنا باستخدام المعلومات أدناه.",
-        },
-      },
-      cookies: {
-        title: "9. ملفات تعريف الارتباط وتقنيات التتبع",
-        content: "لا يعمل التطبيق في متصفح ويب، لذا لا يتم استخدام ملفات تعريف الارتباط. بالإضافة إلى ذلك، لا يتم استخدام أي تقنيات تتبع (معرفات إعلانية، حزم تحليلات SDK، إلخ). نظرًا لأننا لا نجري تتبعًا لأغراض إعلانية كما يتطلبه إطار عمل App Tracking Transparency (ATT) من Apple، فلا يتم عرض مطالبة ATT.",
-      },
-      changes: {
-        title: "10. التغييرات على سياسة الخصوصية",
-        content: "قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر. إذا حدثت تغييرات جوهرية، سنقوم بإخطارك عن طريق تحديث تاريخ \"آخر تحديث\" في أعلى هذه الصفحة.",
-        consent: "إذا واصلت استخدام التطبيق بعد إجراء التغييرات، فسيُعتبر أنك وافقت على سياسة الخصوصية المحدثة.",
-      },
-      contact: {
-        title: "11. اتصل بنا",
-        content: "للأسئلة حول سياسة الخصوصية هذه أو لممارسة حقوقك، يرجى التواصل معنا على:",
-        email: "البريد الإلكتروني",
-        responseTime: "سنرد على استفسارك خلال 30 يومًا كحد أقصى.",
-      },
-      appStoreLabel: {
-        title: "ملصق خصوصية App Store",
-        description: "معلومات الإفصاح لقسم خصوصية التطبيق في App Store.",
-        tableHeaders: ["نوع البيانات", "يتم جمعها", "يتم تتبعها", "الغرض"],
-        rows: [
-          ["الصور والفيديو", "نعم (على الجهاز فقط)", "لا", "وظائف التطبيق (تخزين وإدارة الصور/الفيديو)"],
-          ["المعرفات (معرف الجهاز)", "لا", "لا", "—"],
-          ["بيانات الاستخدام", "لا", "لا", "—"],
-          ["الموقع", "لا", "لا", "—"],
-          ["معلومات الاتصال", "لا", "لا", "—"],
-          ["الاسم، البريد الإلكتروني، إلخ.", "لا", "لا", "—"],
-        ],
-        trackingNote: "\"التتبع\" = استخدام البيانات لأغراض الإعلان أو التحليل من قبل طرف ثالث. لا يرسل التطبيق أي بيانات خارجيًا ولا يتتبع لأغراض إعلانية.",
-        languageNote: "النص الياباني لسياسة الخصوصية هذه هو النص الرسمي.",
+        trackingNote: "※ 本應用程式不會要求 App Tracking Transparency 的追蹤許可。",
+        languageNote: "支援語言：日語、英語、韓語、繁體中文",
       },
     },
   },
@@ -1067,12 +930,12 @@ function LanguageSelector({
   onChangeLang: (lang: Language) => void;
 }) {
   return (
-    <div className="flex flex-wrap justify-center gap-2 mb-6">
+    <div className="flex flex-wrap justify-center gap-2 mb-4">
       {LANGUAGES.map((lang) => (
         <button
           key={lang.code}
           onClick={() => onChangeLang(lang.code)}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             currentLang === lang.code
               ? "bg-gray-800 text-white"
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -1089,11 +952,10 @@ function LanguageSelector({
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section className="mb-8">
-      <h2 className="text-lg font-semibold mb-3 text-gray-800 flex items-center gap-2">
-        <span className="w-1 h-5 bg-gray-600 rounded-full flex-shrink-0"></span>
+      <h2 className="text-lg font-bold mb-3 text-gray-800 pb-2 border-b border-gray-200">
         {title}
       </h2>
-      <div className="pl-3">{children}</div>
+      <div className="space-y-3">{children}</div>
     </section>
   );
 }
@@ -1157,7 +1019,7 @@ function ImportantBox({ children }: { children: React.ReactNode }) {
 // ========================================
 // メインページ
 // ========================================
-export default function PixVaultPrivacyPolicyPage() {
+export default function KeyAlbumPrivacyPolicyPage() {
   const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
   const s = t.sections;
@@ -1166,6 +1028,7 @@ export default function PixVaultPrivacyPolicyPage() {
   const tocItems = [
     s.intro.title,
     s.dataCollection.title,
+    s.permissions.title,
     s.purpose.title,
     s.thirdParty.title,
     s.retention.title,
@@ -1185,13 +1048,13 @@ export default function PixVaultPrivacyPolicyPage() {
           <div className="inline-block mb-4">
             <Image
               src={appIcon}
-              alt="PixVault"
+              alt="KeyAlbum"
               width={80}
               height={80}
               className="rounded-2xl shadow-md"
             />
           </div>
-          <h1 className="text-3xl font-bold mb-2 text-gray-800">PixVault</h1>
+          <h1 className="text-3xl font-bold mb-2 text-gray-800">KeyAlbum</h1>
           <p className="text-xl text-gray-600">{t.title}</p>
           <p className="text-sm text-gray-500 mt-2">
             {t.lastUpdated}: {t.lastUpdatedDate}
@@ -1260,7 +1123,35 @@ export default function PixVaultPrivacyPolicyPage() {
             </SubSection>
           </Section>
 
-          {/* 3. 情報の利用目的 */}
+          {/* 3. アプリが使用する権限 */}
+          <Section title={s.permissions.title}>
+            <p className="text-gray-700 mb-4">{s.permissions.intro}</p>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="text-left p-3 font-semibold text-gray-700 border border-gray-200">
+                      {lang === "ja" ? "権限" : lang === "en" ? "Permission" : lang === "ko" ? "권한" : "權限"}
+                    </th>
+                    <th className="text-left p-3 font-semibold text-gray-700 border border-gray-200">
+                      {lang === "ja" ? "使用目的" : lang === "en" ? "Purpose" : lang === "ko" ? "사용 목적" : "使用目的"}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {s.permissions.items.map((item, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                      <td className="p-3 text-gray-700 border border-gray-200 font-medium">{item.name}</td>
+                      <td className="p-3 text-gray-700 border border-gray-200">{item.purpose}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-gray-600 text-sm mt-3">{s.permissions.note}</p>
+          </Section>
+
+          {/* 4. 情報の利用目的 */}
           <Section title={s.purpose.title}>
             <p className="text-gray-700 mb-4">{s.purpose.intro}</p>
             <div className="overflow-x-auto">
@@ -1283,13 +1174,13 @@ export default function PixVaultPrivacyPolicyPage() {
             </div>
           </Section>
 
-          {/* 4. 第三者サービスへの情報提供 */}
+          {/* 5. 第三者サービスへの情報提供 */}
           <Section title={s.thirdParty.title}>
             <p className="text-gray-700 leading-relaxed mb-4">{s.thirdParty.content}</p>
             <ImportantBox>{s.thirdParty.important}</ImportantBox>
           </Section>
 
-          {/* 5. データの保存と保持期間 */}
+          {/* 6. データの保存と保持期間 */}
           <Section title={s.retention.title}>
             <SubSection title={s.retention.local.title}>
               <p className="text-gray-700 mb-3">{s.retention.local.intro}</p>
@@ -1301,7 +1192,7 @@ export default function PixVaultPrivacyPolicyPage() {
             </SubSection>
           </Section>
 
-          {/* 6. データのセキュリティ */}
+          {/* 7. データのセキュリティ */}
           <Section title={s.security.title}>
             <div className="bg-blue-50 rounded-lg p-4 mb-3">
               <CheckList items={s.security.items} />
@@ -1309,13 +1200,13 @@ export default function PixVaultPrivacyPolicyPage() {
             <p className="text-gray-600 text-sm">{s.security.disclaimer}</p>
           </Section>
 
-          {/* 7. お子様のプライバシー */}
+          {/* 8. お子様のプライバシー */}
           <Section title={s.children.title}>
             <p className="text-gray-700 leading-relaxed mb-3">{s.children.content}</p>
             <p className="text-gray-700 leading-relaxed">{s.children.action}</p>
           </Section>
 
-          {/* 8. ユーザーの権利 */}
+          {/* 9. ユーザーの権利 */}
           <Section title={s.userRights.title}>
             <SubSection title={s.userRights.japan.title}>
               <p className="text-gray-600 text-sm mb-2">{t.userRightsIntro.japan}</p>
@@ -1334,18 +1225,18 @@ export default function PixVaultPrivacyPolicyPage() {
             </SubSection>
           </Section>
 
-          {/* 9. Cookie */}
+          {/* 10. Cookie */}
           <Section title={s.cookies.title}>
             <p className="text-gray-700 leading-relaxed">{s.cookies.content}</p>
           </Section>
 
-          {/* 10. プライバシーポリシーの変更 */}
+          {/* 11. プライバシーポリシーの変更 */}
           <Section title={s.changes.title}>
             <p className="text-gray-700 leading-relaxed mb-3">{s.changes.content}</p>
             <p className="text-gray-700 leading-relaxed">{s.changes.consent}</p>
           </Section>
 
-          {/* 11. お問い合わせ */}
+          {/* 12. お問い合わせ */}
           <Section title={s.contact.title}>
             <p className="text-gray-700 mb-4">{s.contact.content}</p>
             <div className="bg-gray-50 rounded-lg p-4 mb-4 space-y-2 text-sm text-gray-700">
