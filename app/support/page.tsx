@@ -100,6 +100,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "wordcards",
+    name: { ja: "WordCards", en: "WordCards" },
+    icon: "/wordcards.png",
+    href: "/support/wordcards",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
