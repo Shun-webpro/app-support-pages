@@ -110,6 +110,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "snapquiz",
+    name: { ja: "SnapQuiz", en: "SnapQuiz" },
+    icon: "/quizcards.png",
+    href: "/support/quizcards",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
