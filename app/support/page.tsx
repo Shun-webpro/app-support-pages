@@ -112,7 +112,7 @@ const APPS: {
   },
   {
     id: "studelog",
-    name: { ja: "StudeLog", en: "StudeLog" },
+    name: { ja: "StudyLog", en: "StudyLog" },
     icon: "/studelog.png",
     href: "/support/studelog",
     description: {
