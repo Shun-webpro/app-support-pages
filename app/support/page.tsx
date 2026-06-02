@@ -71,16 +71,6 @@ const APPS: {
     },
   },
   {
-    id: "pronova",
-    name: { ja: "Pronova", en: "Pronova" },
-    icon: "/pronova.png",
-    href: "/support/pronova",
-    description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
-    },
-  },
-  {
     id: "flash-english",
     name: { ja: "Flash English", en: "Flash English" },
     icon: "/flashenglish.png",
@@ -115,6 +105,16 @@ const APPS: {
     name: { ja: "SnapQuiz", en: "SnapQuiz" },
     icon: "/quizcards.png",
     href: "/support/quizcards",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
+    id: "studelog",
+    name: { ja: "StudeLog", en: "StudeLog" },
+    icon: "/studelog.png",
+    href: "/support/studelog",
     description: {
       ja: "サポート・FAQ・お問い合わせ",
       en: "Support, FAQ & Contact",
