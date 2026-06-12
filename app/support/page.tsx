@@ -120,6 +120,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "snapnote",
+    name: { ja: "SnapNote", en: "SnapNote" },
+    icon: "/snapnote.png",
+    href: "/support/snapnote",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
