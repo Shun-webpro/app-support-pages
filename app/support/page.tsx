@@ -130,6 +130,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "calendarmemo",
+    name: { ja: "カレンダーメモ", en: "カレンダーメモ" },
+    icon: "/calendermemo.png",
+    href: "/support/calendarmemo",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
