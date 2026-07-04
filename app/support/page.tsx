@@ -41,16 +41,6 @@ const APPS: {
   description: Record<Language, string>;
 }[] = [
   {
-    id: "todoo",
-    name: { ja: "ToDoo", en: "ToDoo" },
-    icon: "/ToDoo.jpeg",
-    href: "/support/todoo",
-    description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
-    },
-  },
-  {
     id: "voka-king",
     name: { ja: "VOKA KING", en: "VOKA KING" },
     icon: "/voka_king.png",
@@ -135,6 +125,36 @@ const APPS: {
     name: { ja: "カレンダーメモ", en: "カレンダーメモ" },
     icon: "/calendermemo.png",
     href: "/support/calendarmemo",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
+    id: "workplan",
+    name: { ja: "WorkPlan", en: "WorkPlan" },
+    icon: "/workplan.png",
+    href: "/support/workplan",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
+    id: "dairygram",
+    name: { ja: "Dairygram", en: "Dairygram" },
+    icon: "/Dairygram.png",
+    href: "/support/dairygram",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
+    id: "resume",
+    name: { ja: "履歴書", en: "履歴書" },
+    icon: "/resume.png",
+    href: "/support/resume",
     description: {
       ja: "サポート・FAQ・お問い合わせ",
       en: "Support, FAQ & Contact",

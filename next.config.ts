@@ -6,11 +6,6 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/support/privacy",
-        destination: "/support/todoo/privacy",
-        permanent: true,
-      },
-      {
         source: "/kantan/privacy",
         destination: "/support/kantan/privacy",
         permanent: true,
