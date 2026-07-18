@@ -92,12 +92,12 @@ const APPS: {
   },
   {
     id: "snapquiz",
-    name: { ja: "SnapQuiz", en: "SnapQuiz" },
+    name: { ja: "すごい問題集", en: "SnapQuiz" },
     icon: "/quizcards.png",
-    href: "/support/quizcards",
+    href: "/quizcards",
     description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
+      ja: "AIが作る、資格・受験対策問題集",
+      en: "AI-built questions for exam prep",
     },
   },
   {
