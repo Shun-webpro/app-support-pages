@@ -184,7 +184,7 @@ const TRANSLATIONS: Record<Language, {
     sections: {
       intro: {
         title: "1. はじめに",
-        content: "WordCards（以下「本アプリ」）は、自分だけの単語帳を作成し、クイズや復習機能で語学学習をサポートするアプリです。本プライバシーポリシーは、本アプリをご利用いただく際に収集する情報の種類、利用目的、管理方法、および第三者への提供について説明します。",
+        content: "すごい単語帳（以下「本アプリ」）は、自分だけの単語帳を作成し、クイズや復習機能で語学学習をサポートするアプリです。本プライバシーポリシーは、本アプリをご利用いただく際に収集する情報の種類、利用目的、管理方法、および第三者への提供について説明します。",
         consent: "本アプリをご利用いただくことで、本プライバシーポリシーに記載された内容に同意したものとみなします。同意いただけない場合は、本アプリのご利用をお控えください。",
       },
       dataCollection: {
@@ -2599,6 +2599,7 @@ export default function WordCardsPrivacyPolicyPage() {
   const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
   const s = t.sections;
+  const brandName = lang === "ja" ? "すごい単語帳" : "WordCards";
   const currentYear = new Date().getFullYear();
 
   const tocItems = [
@@ -2625,13 +2626,13 @@ export default function WordCardsPrivacyPolicyPage() {
           <div className="inline-block mb-4">
             <Image
               src={appIcon}
-              alt="WordCards"
+              alt={brandName}
               width={80}
               height={80}
               className="rounded-2xl shadow-md"
             />
           </div>
-          <h1 className="text-3xl font-bold mb-2 text-gray-800">WordCards</h1>
+          <h1 className="text-3xl font-bold mb-2 text-gray-800">{brandName}</h1>
           <p className="text-xl text-gray-600">{t.title}</p>
           <p className="text-sm text-gray-500 mt-2">
             {t.lastUpdated}: {t.lastUpdatedDate}

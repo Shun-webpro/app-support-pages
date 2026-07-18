@@ -50,7 +50,7 @@ const TRANSLATIONS: Record<Language, {
   ja: {
     support: "サポート",
     aboutSupport: "サポートについて",
-    aboutSupportText: "WordCardsをご利用いただきありがとうございます。ご不明な点やお困りのことがございましたら、以下のよくある質問をご確認いただくか、お問い合わせください。",
+    aboutSupportText: "すごい単語帳をご利用いただきありがとうございます。ご不明な点やお困りのことがございましたら、以下のよくある質問をご確認いただくか、お問い合わせください。",
     faq: "よくある質問",
     contactUs: "お問い合わせ",
     contactText: "上記で解決しない場合は、メールにてお問い合わせください。",
@@ -386,7 +386,7 @@ const FAQ_DATA: {
       de: "Kann ich meine Daten sichern?",
     },
     answer: {
-      ja: "現在、WordCardsのデッキや単語データはお使いの端末内にのみ保存されます。クラウド同期機能は現在対応しておりません。アプリをアンインストールするとデータが削除されますのでご注意ください。端末の買い替え時にはデータの引き継ぎができませんので、あらかじめご了承ください。",
+      ja: "現在、すごい単語帳のデッキや単語データはお使いの端末内にのみ保存されます。クラウド同期機能は現在対応しておりません。アプリをアンインストールするとデータが削除されますのでご注意ください。端末の買い替え時にはデータの引き継ぎができませんので、あらかじめご了承ください。",
       ko: "현재 WordCards의 덱과 단어 데이터는 사용 중인 기기 내에만 저장됩니다. 클라우드 동기화 기능은 현재 지원하지 않습니다. 앱을 삭제하면 데이터가 삭제되므로 주의해 주세요. 기기를 교체할 때 데이터를 이전할 수 없으니 미리 양해 부탁드립니다.",
       en: "Currently, WordCards deck and word data is stored only on your device. Cloud sync is not currently supported. Please note that uninstalling the app will delete your data, and data cannot be transferred when changing devices.",
       "zh-TW": "目前 WordCards 的牌組及單字資料僅儲存在您的裝置中，目前不支援雲端同步。解除安裝應用程式後資料將會被刪除，請注意。更換裝置時無法移轉資料，敬請見諒。",
@@ -480,6 +480,7 @@ function LanguageSelector({
 export default function WordCardsSupportPage() {
   const [lang, setLang] = useState<Language>("ja");
   const t = TRANSLATIONS[lang];
+  const brandName = lang === "ja" ? "すごい単語帳" : "WordCards";
   const currentYear = new Date().getFullYear();
 
   return (
@@ -490,13 +491,13 @@ export default function WordCardsSupportPage() {
           <div className="flex justify-center mb-4">
             <Image
               src={appIcon}
-              alt="WordCards"
+              alt={brandName}
               width={80}
               height={80}
               className="rounded-2xl"
             />
           </div>
-          <h1 className="text-3xl font-bold mb-2">WordCards</h1>
+          <h1 className="text-3xl font-bold mb-2">{brandName}</h1>
           <p className="text-gray-600">{t.support}</p>
         </header>
 
@@ -626,7 +627,7 @@ export default function WordCardsSupportPage() {
       {/* フッター */}
       <footer className="border-t border-gray-200 py-8 mt-16">
         <div className="max-w-2xl mx-auto px-4 text-center text-sm text-gray-500">
-          <p>&copy; {currentYear} WordCards. All rights reserved.</p>
+          <p>&copy; {currentYear} {brandName}. All rights reserved.</p>
         </div>
       </footer>
     </main>

@@ -82,12 +82,12 @@ const APPS: {
   },
   {
     id: "wordcards",
-    name: { ja: "WordCards", en: "WordCards" },
+    name: { ja: "すごい単語帳", en: "WordCards" },
     icon: "/wordcards.png",
-    href: "/support/wordcards",
+    href: "/wordcards",
     description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
+      ja: "写真を撮るだけでAI単語カード",
+      en: "Photo to AI flashcard, instantly",
     },
   },
   {
