@@ -160,6 +160,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "snapfood",
+    name: { ja: "タベミル", en: "SnapFood" },
+    icon: "/snapfood.png",
+    href: "/support/snapfood",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
