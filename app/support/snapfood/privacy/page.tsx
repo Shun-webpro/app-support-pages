@@ -9,13 +9,15 @@ const SUPPORT_EMAIL = "shun_soccer_iino@icloud.com";
 const LAST_UPDATED_JA = "2026年7月29日";
 const LAST_UPDATED_EN = "July 29, 2026";
 const LAST_UPDATED_KO = "2026년 7월 29일";
+const LAST_UPDATED_ZH_TW = "2026年7月29日";
 
-type Language = "ja" | "ko" | "en";
+type Language = "ja" | "ko" | "en" | "zh-TW";
 
 const LANGUAGES: { code: Language; label: string; flag: string }[] = [
   { code: "ja", label: "日本語", flag: "🇯🇵" },
   { code: "ko", label: "한국어", flag: "🇰🇷" },
   { code: "en", label: "English", flag: "🇺🇸🇬🇧" },
+  { code: "zh-TW", label: "繁體中文", flag: "🇹🇼" },
 ];
 
 const TRANSLATIONS: Record<Language, {
@@ -422,6 +424,132 @@ const TRANSLATIONS: Record<Language, {
         content: "For questions about this Privacy Policy, please contact us at:",
         email: "Email",
         responseTime: "We will respond within 30 days of receiving your inquiry.",
+      },
+    },
+  },
+  "zh-TW": {
+    title: "隱私權政策",
+    lastUpdated: "最後更新日期",
+    lastUpdatedDate: LAST_UPDATED_ZH_TW,
+    backToSupport: "返回支援頁面",
+    sections: {
+      intro: {
+        title: "1. 簡介",
+        content: "SnapFood（以下簡稱「本應用程式」）可讓您以照片或條碼記錄餐點、飲品及營養補充品，並支援 AI 估算卡路里與營養素，同時可記錄體重、睡眠、運動、勞動及身體狀況。本隱私權政策說明使用本應用程式時的資訊處理方式。",
+        consent: "使用本應用程式即表示您同意本隱私權政策所述內容。",
+      },
+      dataCollection: {
+        title: "2. 收集的資訊",
+        local: {
+          title: "2-1. 儲存於裝置內的資料",
+          intro: "以下資料僅儲存於您的裝置內：",
+          items: [
+            "餐點、飲品及營養補充品的記錄資料（照片、食品名稱、份量、卡路里、營養素等）",
+            "體重、睡眠及水分攝取記錄",
+            "運動及勞動記錄",
+            "身體狀況（症狀）記錄",
+            "已登錄的食品、目標值及例行安排等設定資料",
+            "AI 教練功能的建議歷史紀錄",
+            "應用程式鎖定用的密碼（已雜湊處理）及生物辨識啟用設定",
+            "應用程式設定（語言、單位等）",
+          ],
+        },
+        server: {
+          title: "2-2. 為 AI 分析及查詢而傳送的資訊",
+          intro: "以下資訊僅在使用相關功能時，才會為了處理而傳送至外部：",
+          items: [
+            "餐點、飲品或營養補充品的照片資料，以及您輸入的說明文字（使用 AI 分析功能時，會透過 Supabase 傳送至 OpenAI API）",
+            "使用 AI 教練功能時，當日的營養攝取狀況、目標值及您輸入的諮詢內容",
+            "條碼號碼（使用條碼查詢功能時，會傳送至公開資料庫 Open Food Facts，不包含任何足以識別個人身分的資訊）",
+          ],
+        },
+        notCollected: {
+          title: "2-3. 不收集的資訊",
+          intro: "本應用程式不會收集以下資訊：",
+          items: [
+            "姓名、電子郵件地址、住址等個人識別資訊（無需註冊帳號）",
+            "位置資訊",
+            "聯絡人",
+            "Apple 健康等其他應用程式的健康資料",
+            "廣告目的的追蹤資料",
+          ],
+        },
+      },
+      purpose: {
+        title: "3. 資訊使用目的",
+        intro: "收集的資訊僅用於以下目的：",
+        items: [
+          "分析照片內容以自動推估卡路里與營養素",
+          "透過條碼查詢食品及飲品資訊",
+          "透過 AI 教練產生餐點建議",
+          "顯示及管理記錄資料，建立統計與日曆檢視畫面",
+          "確認應用程式內購買（訂閱）的狀態",
+          "提供應用程式鎖定功能",
+        ],
+      },
+      thirdParty: {
+        title: "4. 向第三方服務提供資訊",
+        content: "本應用程式為提供 AI 分析功能，使用 Supabase 作為伺服器基礎架構，並將照片及文字資料中繼傳送至 OpenAI API。傳送的資料僅用於分析處理，處理完成後不會儲存於伺服器端。條碼查詢使用的是全球使用者共同建立的公開食品資料庫 Open Food Facts。訂閱管理使用 RevenueCat，會傳送匿名使用者 ID 及 Apple App Store 購買收據資訊。應用程式內購買本身則透過 Apple 的付款系統處理。除上述服務提供者外，本公司絕不會向任何第三方出售或共享使用者資料。",
+      },
+      retention: {
+        title: "5. 資料儲存與刪除",
+        content: "餐點、飲品、營養補充品、體重、睡眠、運動、勞動及身體狀況等記錄資料，僅儲存於您的裝置內。為 AI 分析或查詢而傳送的照片、文字及條碼號碼，於處理完成後不會保留於伺服器端。由於本應用程式不支援雲端同步，若您更換裝置，記錄資料將無法轉移。",
+        deletion: "解除安裝本應用程式將刪除裝置內的所有記錄資料。於應用程式內刪除的個別記錄無法復原。",
+      },
+      permissions: {
+        title: "6. 應用程式使用的權限",
+        intro: "本應用程式使用以下裝置權限：",
+        items: [
+          {
+            name: "相機",
+            detail: "用於拍攝餐點、飲品及營養補充品的照片，以及掃描條碼以取得營養資訊。",
+          },
+          {
+            name: "照片圖庫",
+            detail: "用於從照片圖庫選取餐點等照片，以及將拍攝的照片儲存至「照片」應用程式。",
+          },
+          {
+            name: "Face ID（生物辨識）",
+            detail: "於啟用應用程式鎖定功能時，用於以 Face ID 解鎖應用程式。",
+          },
+        ],
+      },
+      security: {
+        title: "7. 資料安全",
+        items: [
+          "為 AI 分析或條碼查詢而傳送的資料，會透過加密連線（HTTPS/TLS）傳輸",
+          "應用程式鎖定用的密碼絕不會以明碼儲存，會先經過雜湊處理後才儲存於裝置內的安全區域（Keychain）",
+          "應用程式內購買資訊透過 Apple 的付款系統安全處理",
+        ],
+        disclaimer: "請務必妥善設定裝置本身的鎖定功能，以防裝置遺失或遭竊。透過網際網路傳輸資料存在固有風險，本公司無法保證絕對的安全性。",
+      },
+      children: {
+        title: "8. 兒童隱私權",
+        content: "本應用程式並非針對 13 歲以下兒童設計，本公司不會故意收集 13 歲以下兒童的個人資訊。",
+        action: "若本公司得知有 13 歲以下兒童使用本應用程式，將採取合理措施盡速刪除相關資訊。若您是家長或監護人，並得知您的子女正在使用本應用程式，請透過下方聯絡方式與我們聯繫。",
+      },
+      userRights: {
+        title: "9. 使用者的權利",
+        intro: "使用者可隨時進行以下操作：",
+        items: [
+          "於應用程式內刪除個別記錄資料",
+          "解除安裝應用程式以刪除裝置內的所有資料",
+          "於設定畫面還原購買資訊",
+        ],
+        howTo: {
+          title: "其他詢問",
+          content: "如對隱私權有任何疑問，請透過下方聯絡方式與我們聯繫。",
+        },
+      },
+      changes: {
+        title: "10. 隱私權政策的變更",
+        content: "本隱私權政策可能隨時更新。若發生重大變更，將透過更新本頁頂部的「最後更新日期」通知您。變更後若您繼續使用本應用程式，即視為同意更新後的政策。",
+      },
+      contact: {
+        title: "11. 聯絡我們",
+        content: "如對本隱私權政策有任何疑問，請透過以下方式聯絡我們：",
+        email: "電子郵件",
+        responseTime: "我們原則上將於收到詢問後 30 天內回覆。",
       },
     },
   },
