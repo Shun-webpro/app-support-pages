@@ -170,6 +170,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "deadline",
+    name: { ja: "シメキル", en: "DeadLine" },
+    icon: "/deadline.png",
+    href: "/support/deadline",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
