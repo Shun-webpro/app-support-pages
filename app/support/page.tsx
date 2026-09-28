@@ -180,6 +180,16 @@ const APPS: {
       en: "Support, FAQ & Contact",
     },
   },
+  {
+    id: "sleepwave",
+    name: { ja: "スヤログ", en: "SleepWave" },
+    icon: "/sleepwave.png",
+    href: "/support/sleepwave",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
 ];
 
 // ========================================
