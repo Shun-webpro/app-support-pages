@@ -61,16 +61,6 @@ const APPS: {
     },
   },
   {
-    id: "flash-english",
-    name: { ja: "Flash English", en: "Flash English" },
-    icon: "/flashenglish.png",
-    href: "/support/flash-english",
-    description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
-    },
-  },
-  {
     id: "pixvault",
     name: { ja: "鍵アルバム", en: "KeyAlbum" },
     icon: "/pixvault.png",
@@ -101,16 +91,6 @@ const APPS: {
     },
   },
   {
-    id: "studelog",
-    name: { ja: "StudyLog", en: "StudyLog" },
-    icon: "/studelog.png",
-    href: "/support/studelog",
-    description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
-    },
-  },
-  {
     id: "snapnote",
     name: { ja: "SnapNote", en: "SnapNote" },
     icon: "/snapnote.png",
@@ -125,16 +105,6 @@ const APPS: {
     name: { ja: "カレンダーメモ", en: "カレンダーメモ" },
     icon: "/calendermemo.png",
     href: "/support/calendarmemo",
-    description: {
-      ja: "サポート・FAQ・お問い合わせ",
-      en: "Support, FAQ & Contact",
-    },
-  },
-  {
-    id: "workplan",
-    name: { ja: "WorkPlan", en: "WorkPlan" },
-    icon: "/workplan.png",
-    href: "/support/workplan",
     description: {
       ja: "サポート・FAQ・お問い合わせ",
       en: "Support, FAQ & Contact",
