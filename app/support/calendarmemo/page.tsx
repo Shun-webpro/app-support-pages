@@ -104,9 +104,9 @@ const FAQ_DATA: {
       en: "What kind of app is カレンダーメモ?",
     },
     answer: {
-      ja: "カレンダーメモは、カレンダー形式で日付ごとにメモを管理できるアプリです。各日付にチェックボックス付きのメモを追加でき、完了・未完了でフィルタリングしたり、キーワードで検索したりすることができます。また、ウィジェットを使って今日のメモをホーム画面から確認することもできます。",
-      ko: "カレンダーメモ는 캘린더 형식으로 날짜별로 메모를 관리할 수 있는 앱입니다. 각 날짜에 체크박스가 있는 메모를 추가할 수 있으며, 완료·미완료로 필터링하거나 키워드로 검색할 수 있습니다. 또한 위젯을 사용하여 오늘의 메모를 홈 화면에서 확인할 수도 있습니다.",
-      en: "カレンダーメモ is an app that lets you manage memos by date in a calendar format. You can add checkbox memos to each date, filter by completed or uncompleted status, and search by keyword. You can also use a widget to check today's memos from the home screen.",
+      ja: "カレンダーメモは、カレンダー形式で日付ごとにメモ（チェックリスト）を管理できるアプリです。各日付にチェックボックス付きのメモを追加でき、時刻の設定やリマインダー通知、完了・未完了でのフィルター、キーワード検索、パスコードロックなどを利用できます。",
+      ko: "カレンダーメモ는 캘린더 형식으로 날짜별로 메모(체크리스트)를 관리할 수 있는 앱입니다. 각 날짜에 체크박스가 있는 메모를 추가할 수 있으며, 시각 설정과 알림, 완료・미완료 필터, 키워드 검색, 패스코드 잠금 등을 사용할 수 있습니다.",
+      en: "カレンダーメモ is an app for managing memos (checklists) by date in a calendar format. You can add checkbox memos to each date, set times and reminders, filter by completed or open status, search by keyword, and lock the app with a passcode.",
     },
   },
   {
@@ -116,9 +116,33 @@ const FAQ_DATA: {
       en: "How do I add or edit a memo?",
     },
     answer: {
-      ja: "カレンダー画面で任意の日付をタップするとメモ画面が開きます。画面下部の入力欄にテキストを入力して追加ボタンを押すとメモが追加されます。メモの左のチェックボックスをタップすると完了/未完了を切り替えられます。メモを長押しするとドラッグで並び替えができます。メモを左にスワイプすると削除できます。",
-      ko: "캘린더 화면에서 원하는 날짜를 탭하면 메모 화면이 열립니다. 화면 하단의 입력란에 텍스트를 입력하고 추가 버튼을 누르면 메모가 추가됩니다. 메모 왼쪽의 체크박스를 탭하면 완료/미완료를 전환할 수 있습니다. 메모를 길게 누르면 드래그로 순서를 변경할 수 있습니다. 메모를 왼쪽으로 스와이프하면 삭제할 수 있습니다.",
-      en: "Tap any date on the calendar screen to open the memo screen. Enter text in the input field at the bottom and tap the add button to add a memo. Tap the checkbox on the left of a memo to toggle it between completed and uncompleted. Long-press a memo to drag and reorder it. Swipe a memo to the left to delete it.",
+      ja: "カレンダー画面で任意の日付をタップするとメモ画面が開きます。画面下部の入力欄にテキストを入力して追加するとメモが作成されます。過去・未来を問わず、どの日付にも追加できます。メモの左のチェックボックスをタップすると完了/未完了を切り替えられ、メモを長押ししてドラッグすると並び替えができます。不要なメモは、項目の右側にあるゴミ箱アイコンで削除できます。",
+      ko: "캘린더 화면에서 원하는 날짜를 탭하면 메모 화면이 열립니다. 화면 하단의 입력란에 텍스트를 입력해 추가하면 메모가 만들어집니다. 과거・미래 상관없이 어떤 날짜에도 추가할 수 있습니다. 메모 왼쪽의 체크박스를 탭하면 완료/미완료를 전환할 수 있고, 메모를 길게 눌러 드래그하면 순서를 변경할 수 있습니다. 필요 없는 메모는 항목 오른쪽의 휴지통 아이콘으로 삭제할 수 있습니다.",
+      en: "Tap any date on the calendar screen to open the memo screen. Enter text in the input field at the bottom to add a memo. You can add memos to any date, past or future. Tap the checkbox on the left of a memo to toggle it between completed and open, and long-press and drag a memo to reorder it. To delete a memo, tap the trash icon on the right side of the item.",
+    },
+  },
+  {
+    question: {
+      ja: "メモに時刻を設定したり、通知を受け取ったりできますか？",
+      ko: "메모에 시각을 설정하거나 알림을 받을 수 있나요?",
+      en: "Can I set a time on a memo and get notified?",
+    },
+    answer: {
+      ja: "はい。メモの時計アイコンから開始時刻（終了時刻は任意）を設定できます。設定画面の「リマインダー」をオンにすると、時刻を設定したメモを開始時刻ちょうど、または指定した分数前に通知します。初めてオンにするときに通知の許可を求められますので、許可してください。通知がオフの場合は、端末の「設定」アプリからこのアプリの通知を許可してください。",
+      ko: "네. 메모의 시계 아이콘에서 시작 시각(종료 시각은 선택)을 설정할 수 있습니다. 설정 화면에서 「리마인더」를 켜면 시각을 설정한 메모를 시작 시각 정각 또는 지정한 분 전에 알려줍니다. 처음 켤 때 알림 허용을 요청하므로 허용해 주세요. 알림이 꺼져 있다면 기기의 「설정」 앱에서 이 앱의 알림을 허용해 주세요.",
+      en: "Yes. Tap the clock icon on a memo to set a start time (an end time is optional). Turn on \"Reminder\" in Settings to be notified at the start time or a set number of minutes before. You will be asked for notification permission the first time you turn it on. If notifications are off, allow them for this app in your device's Settings app.",
+    },
+  },
+  {
+    question: {
+      ja: "未完了のメモを次の日に移したい",
+      ko: "미완료 메모를 다음 날로 옮기고 싶습니다",
+      en: "How do I move unfinished memos to the next day?",
+    },
+    answer: {
+      ja: "メモ画面にある「未完了を次の日へ」ボタンをタップすると、その日の未完了のメモをまとめて翌日に移動できます。確認画面で件数を確認してから「移動」を選んでください。ボタンはドラッグして位置を動かすこともできます。",
+      ko: "메모 화면의 「미완료를 다음 날로」 버튼을 탭하면 그날의 미완료 메모를 한꺼번에 다음 날로 옮길 수 있습니다. 확인 화면에서 건수를 확인한 후 「이동」을 선택해 주세요. 버튼은 드래그하여 위치를 옮길 수도 있습니다.",
+      en: "Tap the \"Move unchecked to next day\" button on the memo screen to move all of that day's unchecked memos to the next day at once. Check the count in the confirmation and choose \"Move\". You can also drag the button to reposition it.",
     },
   },
   {
@@ -128,57 +152,21 @@ const FAQ_DATA: {
       en: "How do I use the filter feature?",
     },
     answer: {
-      ja: "カレンダー画面およびメモ画面の上部に「全て」「未完了」「完了」のフィルターボタンがあります。「未完了」を選ぶとチェックしていないメモだけが表示され、「完了」を選ぶとチェック済みのメモだけが表示されます。設定したフィルターは次回起動時も保持されます。",
-      ko: "캘린더 화면과 메모 화면 상단에 「전체」「미완료」「완료」 필터 버튼이 있습니다. 「미완료」를 선택하면 체크하지 않은 메모만 표시되고, 「완료」를 선택하면 체크된 메모만 표시됩니다. 설정한 필터는 다음번 실행 시에도 유지됩니다.",
-      en: "Filter buttons for \"All\", \"Uncompleted\", and \"Completed\" are displayed at the top of the calendar and memo screens. Selecting \"Uncompleted\" shows only unchecked memos, and selecting \"Completed\" shows only checked memos. Your filter setting is retained the next time you open the app.",
+      ja: "カレンダー画面やメモ画面の上部に「全て」「未完了」「完了」のフィルターがあります。「未完了」を選ぶとチェックしていないメモだけが表示され、「完了」を選ぶとチェック済みのメモだけが表示されます。",
+      ko: "캘린더 화면과 메모 화면 상단에 「전체」「미완료」「완료」 필터가 있습니다. 「미완료」를 선택하면 체크하지 않은 메모만 표시되고, 「완료」를 선택하면 체크된 메모만 표시됩니다.",
+      en: "Filters for \"All\", \"Open\", and \"Done\" are displayed at the top of the calendar and memo screens. Selecting \"Open\" shows only unchecked memos, and selecting \"Done\" shows only checked memos.",
     },
   },
   {
     question: {
-      ja: "区切り線（ディバイダー）の追加方法を教えてください",
-      ko: "구분선(디바이더) 추가 방법을 알려주세요",
-      en: "How do I add a divider?",
+      ja: "仕切り（セクション）の追加方法を教えてください",
+      ko: "구분선(섹션) 추가 방법을 알려주세요",
+      en: "How do I add a divider (section)?",
     },
     answer: {
-      ja: "メモ画面の下部入力欄の右にある区切り線ボタンをタップすると、メモ一覧に色付きの区切り線を追加できます。区切り線をタップするとカラーピッカーが開き、色を変更できます。区切り線もドラッグで位置を変更したり、スワイプで削除したりできます。",
-      ko: "메모 화면 하단 입력란 오른쪽에 있는 구분선 버튼을 탭하면 메모 목록에 색상 구분선을 추가할 수 있습니다. 구분선을 탭하면 색상 선택기가 열려 색상을 변경할 수 있습니다. 구분선도 드래그로 위치를 변경하거나 스와이프로 삭제할 수 있습니다.",
-      en: "Tap the divider button to the right of the input field at the bottom of the memo screen to add a colored divider to the memo list. Tapping a divider opens a color picker to change its color. Dividers can also be repositioned by dragging or deleted by swiping.",
-    },
-  },
-  {
-    question: {
-      ja: "ウィジェットの設定方法を教えてください",
-      ko: "위젯 설정 방법을 알려주세요",
-      en: "How do I set up the widget?",
-    },
-    answer: {
-      ja: "設定画面でウィジェットをオンにしてください。その後、iPhoneのホーム画面を長押しして編集モードにし、「＋」ボタンからカレンダーメモのウィジェットを追加できます。ウィジェットには今日のメモが表示されます。\n※ウィジェットの表示はOSの仕様により、リアルタイムではなく一定の間隔で更新されます。",
-      ko: "설정 화면에서 위젯을 켜세요. 그런 다음 iPhone 홈 화면을 길게 눌러 편집 모드로 들어가고, 「+」버튼에서 カレンダーメモ 위젯을 추가할 수 있습니다. 위젯에는 오늘의 메모가 표시됩니다.\n※ 위젯 표시는 OS 사양상 실시간이 아닌 일정 간격으로 업데이트됩니다.",
-      en: "Turn on the widget from the Settings screen. Then long-press the iPhone home screen to enter edit mode, and add the カレンダーメモ widget from the \"+\" button. The widget displays today's memos.\n※ Due to OS specifications, the widget updates at intervals, not in real time.",
-    },
-  },
-  {
-    question: {
-      ja: "テーマやアクセントカラーを変更したい",
-      ko: "테마나 액센트 색상을 변경하고 싶습니다",
-      en: "I want to change the theme or accent color",
-    },
-    answer: {
-      ja: "設定画面から変更できます。テーマはライト・ダーク・自動（端末の設定に合わせる）から選択できます。アクセントカラーはカラーピッカーで好みの色を選ぶことができます。設定はアプリを再起動しても保持されます。",
-      ko: "설정 화면에서 변경할 수 있습니다. 테마는 라이트・다크・자동(기기 설정에 맞춤) 중에서 선택할 수 있습니다. 액센트 색상은 색상 선택기에서 원하는 색상을 선택할 수 있습니다. 설정은 앱을 재시작해도 유지됩니다.",
-      en: "You can change these from the Settings screen. The theme can be set to Light, Dark, or Auto (follows device settings). The accent color can be chosen with a color picker. Settings are retained even after restarting the app.",
-    },
-  },
-  {
-    question: {
-      ja: "メモのデータはどこに保存されますか？バックアップはできますか？",
-      ko: "메모 데이터는 어디에 저장되나요? 백업할 수 있나요?",
-      en: "Where is my memo data saved? Can I back it up?",
-    },
-    answer: {
-      ja: "メモのデータはすべてお使いの端末内に保存されます。サーバーへのデータ送信は行っておりません。アプリをアンインストールするとすべてのメモデータが削除されますのでご注意ください。現時点では外部へのエクスポート機能はご用意しておりません。",
-      ko: "메모 데이터는 모두 사용 중인 기기 내에 저장됩니다. 서버로 데이터를 전송하지 않습니다. 앱을 삭제하면 모든 메모 데이터가 삭제되므로 주의해 주세요. 현재 외부로의 내보내기 기능은 제공되지 않습니다.",
-      en: "All memo data is saved on your device. No data is sent to a server. Please note that uninstalling the app will delete all memo data. There is currently no export feature available.",
+      ja: "メモ画面の入力欄付近にある「仕切り」ボタンをタップすると、メモ一覧にセクション名つきの仕切りを追加できます。仕切りの色は13色から選べます。仕切りもドラッグで位置を変更したり、ゴミ箱アイコンで削除したりできます。",
+      ko: "메모 화면 입력란 근처의 「구분선」 버튼을 탭하면 메모 목록에 섹션 이름이 있는 구분선을 추가할 수 있습니다. 구분선의 색상은 13가지 중에서 선택할 수 있습니다. 구분선도 드래그로 위치를 변경하거나 휴지통 아이콘으로 삭제할 수 있습니다.",
+      en: "Tap the \"Divider\" button near the input field on the memo screen to add a divider with a section name to the memo list. You can choose its color from 13 options. Dividers can also be repositioned by dragging or deleted with the trash icon.",
     },
   },
   {
@@ -188,9 +176,57 @@ const FAQ_DATA: {
       en: "How do I search memos by keyword?",
     },
     answer: {
-      ja: "画面下部のタブバーにある検索アイコンをタップすると検索画面が開きます。検索欄にキーワードを入力すると、全日付のメモの中からキーワードに一致するメモが表示されます。検索結果の日付をタップすると、そのメモ画面に移動できます。",
-      ko: "화면 하단 탭 바의 검색 아이콘을 탭하면 검색 화면이 열립니다. 검색란에 키워드를 입력하면 모든 날짜의 메모 중 키워드와 일치하는 메모가 표시됩니다. 검색 결과의 날짜를 탭하면 해당 메모 화면으로 이동할 수 있습니다.",
-      en: "Tap the search icon in the tab bar at the bottom of the screen to open the search screen. Enter a keyword in the search field to display memos matching the keyword from all dates. Tapping a date in the results will navigate you to that memo screen.",
+      ja: "画面下部のタブバーの「検索」をタップして検索画面を開き、キーワードを入力すると、全日付のメモの中から一致するメモが表示されます。検索結果をタップすると、そのメモの日付に移動できます。",
+      ko: "화면 하단 탭 바의 「검색」을 탭하여 검색 화면을 열고 키워드를 입력하면 모든 날짜의 메모 중 일치하는 메모가 표시됩니다. 검색 결과를 탭하면 해당 메모의 날짜로 이동할 수 있습니다.",
+      en: "Tap \"Search\" in the tab bar at the bottom of the screen and enter a keyword to display matching memos from all dates. Tapping a result takes you to that memo's date.",
+    },
+  },
+  {
+    question: {
+      ja: "パスコードロックや Face ID を使いたい",
+      ko: "패스코드 잠금이나 Face ID를 사용하고 싶습니다",
+      en: "How do I use the passcode lock or Face ID?",
+    },
+    answer: {
+      ja: "設定画面の「パスコードロック」から4桁のパスコードを設定できます。設定後は「生体認証でロック解除」をオンにすると、Face ID / Touch ID でも解除できます。パスコードの変更や解除も同じ画面から行えます。\n※パスコードを忘れた場合は、アプリを再インストールする必要があり、その際に保存されているメモも削除されます。",
+      ko: "설정 화면의 「패스코드 잠금」에서 4자리 패스코드를 설정할 수 있습니다. 설정 후 「생체 인증으로 잠금 해제」를 켜면 Face ID / Touch ID로도 해제할 수 있습니다. 패스코드 변경이나 해제도 같은 화면에서 할 수 있습니다.\n※ 패스코드를 잊어버린 경우 앱을 재설치해야 하며, 이때 저장된 메모도 삭제됩니다.",
+      en: "You can set a 4-digit passcode from \"Passcode Lock\" in Settings. After setting it, turn on \"Unlock with Biometrics\" to also unlock with Face ID / Touch ID. You can change or disable the passcode from the same screen.\n※ If you forget your passcode, you will need to reinstall the app, which also deletes your saved memos.",
+    },
+  },
+  {
+    question: {
+      ja: "テーマやアクセントカラーを変更したい",
+      ko: "테마나 액센트 색상을 변경하고 싶습니다",
+      en: "I want to change the theme or accent color",
+    },
+    answer: {
+      ja: "設定画面から変更できます。「テーマモード」でライト・ダークを、「テーマカラー」で好みの色を選択できます。設定はアプリを再起動しても保持されます。",
+      ko: "설정 화면에서 변경할 수 있습니다. 「테마 모드」에서 라이트・다크를, 「테마 색상」에서 원하는 색상을 선택할 수 있습니다. 설정은 앱을 재시작해도 유지됩니다.",
+      en: "You can change these from the Settings screen. Choose Light or Dark under \"Theme Mode\" and pick your favorite color under \"Theme Color\". Settings are retained even after restarting the app.",
+    },
+  },
+  {
+    question: {
+      ja: "広告を非表示にするには？復元はできますか？",
+      ko: "광고를 숨기려면? 복원할 수 있나요?",
+      en: "How do I remove ads? Can I restore my purchase?",
+    },
+    answer: {
+      ja: "設定画面の「広告を削除」から、買い切りまたは期間プランをお選びいただくと、広告が表示されなくなります。機種変更や再インストールをした場合は、同じ画面の「購入を復元する」から、購入済みの内容を復元できます。サブスクリプションの管理・解約は、App Storeのアカウント設定から行えます。",
+      ko: "설정 화면의 「광고 제거」에서 일회성 구매 또는 기간 플랜을 선택하면 광고가 표시되지 않습니다. 기기 변경이나 재설치를 한 경우 같은 화면의 「구매 복원」에서 구매한 내용을 복원할 수 있습니다. 구독의 관리・해지는 App Store의 계정 설정에서 할 수 있습니다.",
+      en: "Choose a one-time or period plan from \"Remove Ads\" in Settings and ads will no longer be shown. If you changed devices or reinstalled the app, use \"Restore Purchases\" on the same screen to restore your purchase. You can manage or cancel subscriptions in your App Store account settings.",
+    },
+  },
+  {
+    question: {
+      ja: "メモのデータはどこに保存されますか？バックアップはできますか？",
+      ko: "메모 데이터는 어디에 저장되나요? 백업할 수 있나요?",
+      en: "Where is my memo data saved? Can I back it up?",
+    },
+    answer: {
+      ja: "メモのデータはすべてお使いの端末内に保存され、サーバーへは送信されません。アプリをアンインストールしたり端末を初期化したりするとメモは削除されますのでご注意ください。現時点ではバックアップ・エクスポート機能はご用意しておりません。",
+      ko: "메모 데이터는 모두 사용 중인 기기 내에 저장되며 서버로 전송되지 않습니다. 앱을 삭제하거나 기기를 초기화하면 메모가 삭제되므로 주의해 주세요. 현재 백업・내보내기 기능은 제공되지 않습니다.",
+      en: "All memo data is saved on your device and is not sent to a server. Please note that uninstalling the app or resetting your device will delete your memos. There is currently no backup or export feature.",
     },
   },
 ];
