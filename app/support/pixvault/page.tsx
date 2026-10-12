@@ -186,6 +186,76 @@ const FAQ_DATA: {
   },
   {
     question: {
+      ja: "動画の編集はできますか？",
+      en: "Can I edit videos?",
+      ko: "동영상을 편집할 수 있나요?",
+      "zh-TW": "可以編輯影片嗎？",
+    },
+    answer: {
+      ja: "はい、動画のトリミング（開始・終了位置の指定）と、同じフォルダ内の複数の動画の結合に対応しています。編集後は上書き保存、または新しい動画として保存できます。",
+      en: "Yes. You can trim a video by setting its start and end points, and merge multiple videos in the same folder. After editing, you can overwrite the original or save it as a new video.",
+      ko: "네, 동영상 트리밍(시작・종료 위치 지정)과 같은 폴더 내 여러 동영상의 결합을 지원합니다. 편집 후에는 덮어쓰기 또는 새 동영상으로 저장할 수 있습니다.",
+      "zh-TW": "可以。支援影片剪輯（指定開始與結束位置），以及合併同一資料夾內的多部影片。編輯後可選擇覆寫儲存，或另存為新影片。",
+    },
+  },
+  {
+    question: {
+      ja: "削除した写真や動画は元に戻せますか？",
+      en: "Can I restore photos or videos I deleted?",
+      ko: "삭제한 사진이나 동영상을 복원할 수 있나요?",
+      "zh-TW": "刪除的照片或影片可以還原嗎？",
+    },
+    answer: {
+      ja: "はい、削除した写真・動画は一度「ゴミ箱」に移動し、30日間は復元できます。30日が経過すると自動的に完全に削除されます。ゴミ箱から手動で完全に削除することもできます。",
+      en: "Yes. Deleted photos and videos first move to the Trash, where you can restore them for 30 days. After 30 days they are permanently deleted automatically. You can also permanently delete them manually from the Trash.",
+      ko: "네, 삭제한 사진・동영상은 먼저 「휴지통」으로 이동하며 30일 동안 복원할 수 있습니다. 30일이 지나면 자동으로 완전히 삭제됩니다. 휴지통에서 직접 완전 삭제할 수도 있습니다.",
+      "zh-TW": "可以。刪除的照片與影片會先移至「垃圾桶」，30 天內都可以還原。超過 30 天後會自動永久刪除。也可以從垃圾桶手動永久刪除。",
+    },
+  },
+  {
+    question: {
+      ja: "スライドショーはできますか？",
+      en: "Is there a slideshow feature?",
+      ko: "슬라이드쇼 기능이 있나요?",
+      "zh-TW": "有幻燈片播放功能嗎？",
+    },
+    answer: {
+      ja: "はい、フォルダ内の写真を自動で順番に表示するスライドショーに対応しています。1枚あたりの表示時間は設定で変更できます。",
+      en: "Yes. You can play the photos in a folder as an automatic slideshow, and change how long each photo is displayed in the settings.",
+      ko: "네, 폴더 내 사진을 자동으로 순서대로 표시하는 슬라이드쇼를 지원합니다. 사진 한 장당 표시 시간은 설정에서 변경할 수 있습니다.",
+      "zh-TW": "有的，支援自動依序播放資料夾內照片的幻燈片。每張照片的顯示時間可在設定中調整。",
+    },
+  },
+  {
+    question: {
+      ja: "広告を非表示にするにはどうすればよいですか？",
+      en: "How can I remove ads?",
+      ko: "광고를 숨기려면 어떻게 해야 하나요?",
+      "zh-TW": "如何移除廣告？",
+    },
+    answer: {
+      ja: "設定画面の「広告を削除」から購入すると、バナー広告・一覧の広告・写真の追加や保存後に表示される全画面広告がすべて非表示になります。買い切りと期間プランをご用意しています。",
+      en: "Purchase \"Remove Ads\" from the Settings screen to hide the banner ads, the ads in lists, and the full-screen ads shown after adding or saving photos. A one-time purchase and term plans are available.",
+      ko: "설정 화면의 「광고 제거」에서 구매하시면 배너 광고, 목록의 광고, 사진 추가・저장 후 표시되는 전면 광고가 모두 표시되지 않습니다. 일회성 구매와 기간 플랜이 준비되어 있습니다.",
+      "zh-TW": "在設定畫面的「移除廣告」中購買後，橫幅廣告、列表中的廣告，以及新增或儲存照片後顯示的全螢幕廣告都將不再顯示。提供買斷與期間方案。",
+    },
+  },
+  {
+    question: {
+      ja: "機種変更や再インストール後に、広告削除の購入を復元できますか？",
+      en: "Can I restore my ad-removal purchase after changing devices or reinstalling?",
+      ko: "기기를 변경하거나 앱을 다시 설치한 후 광고 제거 구매를 복원할 수 있나요?",
+      "zh-TW": "更換裝置或重新安裝後，可以還原移除廣告的購買嗎？",
+    },
+    answer: {
+      ja: "はい、同じApple ID（Androidの場合は同じGoogleアカウント）であれば、「広告を削除」画面の「購入を復元する」から復元できます。なお、写真・動画のデータは購入とは関係なく、再インストールすると削除されますのでご注意ください。",
+      en: "Yes. With the same Apple ID (or Google account on Android), tap \"Restore Purchases\" on the Remove Ads screen. Note that your photos and videos are not part of a purchase and are deleted when the app is reinstalled.",
+      ko: "네, 같은 Apple ID(Android의 경우 같은 Google 계정)라면 「광고 제거」 화면의 「구매 복원」에서 복원할 수 있습니다. 다만 사진・동영상 데이터는 구매와 관계없이 앱을 다시 설치하면 삭제되므로 주의해 주세요.",
+      "zh-TW": "可以。只要使用相同的 Apple ID（Android 則為相同的 Google 帳號），即可在「移除廣告」畫面點選「還原購買」。請注意，照片與影片資料與購買無關，重新安裝應用程式後會被刪除。",
+    },
+  },
+  {
+    question: {
       ja: "アプリ内で写真を撮影できますか？",
       en: "Can I take photos within the app?",
       ko: "앱 내에서 사진을 촬영할 수 있나요?",
