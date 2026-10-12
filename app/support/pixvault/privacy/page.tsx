@@ -167,7 +167,7 @@ const TRANSLATIONS: Record<Language, {
     sections: {
       intro: {
         title: "1. はじめに",
-        content: "KeyAlbum（以下「本アプリ」）は、写真・動画をデバイス内に安全に保存・管理するためのアプリです。本アプリはPINや生体認証（Face ID・指紋認証）によるロック機能、写真エディター、カメラ撮影機能を備えています。本プライバシーポリシーは、本アプリをご利用いただく際のデータの取り扱いについて説明します。",
+        content: "鍵アルバム（以下「本アプリ」）は、写真・動画をデバイス内に安全に保存・管理するためのアプリです。本アプリはPINや生体認証（Face ID・指紋認証）によるロック機能、写真エディター、カメラ撮影機能を備えています。本プライバシーポリシーは、本アプリをご利用いただく際のデータの取り扱いについて説明します。",
         consent: "本アプリをご利用いただくことで、本プライバシーポリシーに記載された内容に同意したものとみなします。同意いただけない場合は、本アプリのご利用をお控えください。",
       },
       dataCollection: {
@@ -1054,7 +1054,7 @@ export default function KeyAlbumPrivacyPolicyPage() {
               className="rounded-2xl shadow-md"
             />
           </div>
-          <h1 className="text-3xl font-bold mb-2 text-gray-800">KeyAlbum</h1>
+          <h1 className="text-3xl font-bold mb-2 text-gray-800">{lang === "ja" ? "鍵アルバム" : "KeyAlbum"}</h1>
           <p className="text-xl text-gray-600">{t.title}</p>
           <p className="text-sm text-gray-500 mt-2">
             {t.lastUpdated}: {t.lastUpdatedDate}

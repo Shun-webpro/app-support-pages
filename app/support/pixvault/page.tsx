@@ -44,7 +44,7 @@ const TRANSLATIONS: Record<Language, {
   ja: {
     support: "サポート",
     aboutSupport: "サポートについて",
-    aboutSupportText: "KeyAlbumをご利用いただきありがとうございます。ご質問や問題がございましたら、下記のFAQをご確認いただくか、お問い合わせください。",
+    aboutSupportText: "鍵アルバムをご利用いただきありがとうございます。ご質問や問題がございましたら、下記のFAQをご確認いただくか、お問い合わせください。",
     faq: "よくある質問",
     contactUs: "お問い合わせ",
     contactText: "上記で解決策が見つからない場合は、メールにてお問い合わせください。",
@@ -340,7 +340,7 @@ export default function KeyAlbumSupportPage() {
               className="rounded-2xl"
             />
           </div>
-          <h1 className="text-3xl font-bold mb-2">KeyAlbum</h1>
+          <h1 className="text-3xl font-bold mb-2">{lang === "ja" ? "鍵アルバム" : "KeyAlbum"}</h1>
           <p className="text-gray-600">{t.support}</p>
         </header>
 
