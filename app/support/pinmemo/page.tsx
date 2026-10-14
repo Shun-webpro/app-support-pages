@@ -35,6 +35,8 @@ const TRANSLATIONS: Record<Language, {
   responseTimeText: string;
   supportedLanguages: string;
   supportedLanguagesText: string;
+  privacyPolicy: string;
+  privacyPolicyText: string;
   backToHub: string;
 }> = {
   ja: {
@@ -49,6 +51,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "お問い合わせへの返信は通常48時間以内を目安としております。お時間をいただく場合がございますが、ご了承ください。",
     supportedLanguages: "対応言語",
     supportedLanguagesText: "日本語・英語でのお問い合わせに対応しております。",
+    privacyPolicy: "プライバシーポリシー",
+    privacyPolicyText: "プライバシーポリシーはこちらでご確認いただけます。",
     backToHub: "アプリ一覧に戻る",
   },
   en: {
@@ -63,6 +67,8 @@ const TRANSLATIONS: Record<Language, {
     responseTimeText: "We aim to respond to inquiries usually within 48 hours. Thank you for your patience.",
     supportedLanguages: "Supported Languages",
     supportedLanguagesText: "We accept inquiries in Japanese and English.",
+    privacyPolicy: "Privacy Policy",
+    privacyPolicyText: "Please check here for our privacy policy.",
     backToHub: "Back to App List",
   },
 };
@@ -420,9 +426,24 @@ export default function PinMemoSupportPage() {
         </Section>
 
         {/* 対応言語 */}
-        <Section className="mb-0">
+        <Section>
           <SectionTitle>{t.supportedLanguages}</SectionTitle>
           <p className="text-gray-700 leading-relaxed">{t.supportedLanguagesText}</p>
+        </Section>
+
+        {/* プライバシーポリシー */}
+        <Section className="mb-0">
+          <SectionTitle>{t.privacyPolicy}</SectionTitle>
+          <p className="text-gray-700 mb-4">{t.privacyPolicyText}</p>
+          <Link
+            href="/support/pinmemo/privacy"
+            className="inline-flex items-center gap-2 bg-gray-100 text-gray-800 px-5 py-3 rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            {t.privacyPolicy}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
         </Section>
       </div>
 
