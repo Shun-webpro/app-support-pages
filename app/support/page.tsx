@@ -151,6 +151,16 @@ const APPS: {
     },
   },
   {
+    id: "pinmemo",
+    name: { ja: "ピンメモ", en: "PinMemo" },
+    icon: "/pinmemo.png",
+    href: "/support/pinmemo",
+    description: {
+      ja: "サポート・FAQ・お問い合わせ",
+      en: "Support, FAQ & Contact",
+    },
+  },
+  {
     id: "sleepwave",
     name: { ja: "スヤログ", en: "SleepWave" },
     icon: "/sleepwave.png",
