@@ -112,7 +112,7 @@ const APPS: {
   },
   {
     id: "dairygram",
-    name: { ja: "Dairygram", en: "Dairygram" },
+    name: { ja: "日記グラム", en: "Dairygram" },
     icon: "/Dairygram.png",
     href: "/support/dairygram",
     description: {
